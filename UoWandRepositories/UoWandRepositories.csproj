@@ -56,7 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Realization\Repositories\CategoryRepository.cs" />
     <Compile Include="Realization\Repositories\ItemCharacteristicRepository.cs" />
-    <Compile Include="Realization\Repositories\ItemRepoitory.cs" />
+    <Compile Include="Realization\Repositories\ItemRepository.cs" />
     <Compile Include="Realization\Repositories\OrderRepository.cs" />
     <Compile Include="Realization\Repositories\ShopGenericRepository.cs" />
     <Compile Include="Realization\UnitOfWork\ShopUnitOfWork.cs" />

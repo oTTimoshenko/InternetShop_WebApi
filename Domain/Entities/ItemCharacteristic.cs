@@ -12,7 +12,7 @@ namespace Domain.Entities
     {
         [Key]
         [ForeignKey("Item")]
-        public int CharacteristicId { get; set; }
+        public int ItemCharacteristicId { get; set; }
         public double DisplayDiagonal { get; set; }
         public int RAM { get; set; }
         public int Memory { get; set; } // Memory of item

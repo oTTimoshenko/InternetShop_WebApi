@@ -28,7 +28,6 @@ namespace UoWandRepositories.Repositories
 
         public IEnumerable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         {
-
             IEnumerable<T> query = _dbset.Where(predicate).AsEnumerable();
             return query;
         }

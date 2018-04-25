@@ -9,17 +9,17 @@ using System.Data.Entity;
 
 namespace UoWandRepositories.Repositories
 {
-    class OrderRepository: ShopGenericRepository<Order>, IOrderRepository
+    public class ItemRepository: ShopGenericRepository<Item>, IItemRepository
     {
-        public OrderRepository(DbContext context)
+        public ItemRepository(DbContext context)
             : base(context)
         {
 
         }
 
-        public Order GetById(int id)
+        public Item GetById(int id)
         {
-            return _dbset.Include(x => x.Items).Where(x => x.OrderId == id).FirstOrDefault();
+            return _dbset.Include(x => x.Category).Where(x => x.ItemId == id).FirstOrDefault();
         }
     }
 }

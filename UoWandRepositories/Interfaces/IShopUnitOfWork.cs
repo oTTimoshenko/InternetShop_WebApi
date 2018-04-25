@@ -8,6 +8,6 @@ namespace UoWandRepositories.Interfaces
 {
    public interface IShopUnitOfWork:IDisposable
     {
-        int Commit();
+        int Commit(); //Save Changes
     }
 }
