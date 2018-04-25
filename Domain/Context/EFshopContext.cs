@@ -22,7 +22,7 @@ namespace Domain.Context
             .Map(m =>
             {
              m.ToTable("ItemOrders");
-            m.MapLeftKey("ItemId");
+            m.MapLeftKey("ItemId");// Anton lox
              m.MapRightKey("OrderId");
             });
 
