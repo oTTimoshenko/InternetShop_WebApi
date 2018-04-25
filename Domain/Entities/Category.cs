@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
@@ -12,5 +13,12 @@ namespace Domain.Entities
         [Key]
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
+
+        public ICollection<Item> Items { get; set; }
+
+        public Category()
+        {
+            Items = new List<Item>();
+        }
     }
 }
