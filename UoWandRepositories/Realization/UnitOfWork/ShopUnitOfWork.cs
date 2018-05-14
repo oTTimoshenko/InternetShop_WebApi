@@ -18,11 +18,52 @@ namespace UoWandRepositories.UnitOfWork
         private IItemRepository itemRepository;
         private IOrderRepository orderRepository;
 
-        public ShopUnitOfWork(DbContext context)
+        public ShopUnitOfWork(DbContext context, 
+            ICategoryRepository categoryRepository, 
+            IItemCharacteristicRepository itemCharacteristicRepository,
+            IItemRepository itemRepository,
+            IOrderRepository orderRepository)
         {
             _dbContext = context;
+            this.categoryRepository = categoryRepository;
+            this.itemCharacteristicRepository = itemCharacteristicRepository;
+            this.itemRepository = itemRepository;
+            this.orderRepository = orderRepository;
+
         }
 
+        public IShopGenericRepository<Category> Categories
+        {
+            get
+            {
+                return categoryRepository;
+            }
+        }
+
+        public IShopGenericRepository<ItemCharacteristic> ItemCharacteristics
+        {
+            get
+            {
+                return itemCharacteristicRepository;
+            }
+        }
+
+        public IShopGenericRepository<Item> Items
+        {
+            get
+            {
+                return itemRepository;
+            }
+        }
+
+        public IShopGenericRepository<Order> Orders
+        {
+            get
+            {
+                return orderRepository;
+            }
+        }
+                /*
         public IShopGenericRepository<Category> Categories
         {
             get
@@ -61,9 +102,9 @@ namespace UoWandRepositories.UnitOfWork
                     orderRepository = new OrderRepository(_dbContext);
                 return orderRepository;
             }
-        }
+        }*/
 
-        public int Commit()// Save changes
+        public int Save()// Save changes
         {
 
             return _dbContext.SaveChanges();
@@ -86,7 +127,6 @@ namespace UoWandRepositories.UnitOfWork
                     if (_dbContext != null)
                     {
                         _dbContext.Dispose();
-                        _dbContext = null;
                     }
                 }
             this.disposed = true;

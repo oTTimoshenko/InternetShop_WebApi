@@ -46,10 +46,5 @@ namespace UoWandRepositories.Repositories
         {
             _entities.Entry(entity).State = System.Data.Entity.EntityState.Modified;
         }
-
-        public virtual void Save()
-        {
-            _entities.SaveChanges();
-        }
     }
 }
