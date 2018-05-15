@@ -5,11 +5,12 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UoWandRepositories.Entities;
 using UoWandRepositories.Interfaces;
 
 namespace UoWandRepositories.Repositories
 {
-    public class CategoryRepository:ShopGenericRepository<Category>, ICategoryRepository
+    public class CategoryRepository:ShopGenericRepository<CategoryUoW>, ICategoryRepository
     {
         public CategoryRepository(DbContext context)
             : base(context)
@@ -17,7 +18,7 @@ namespace UoWandRepositories.Repositories
 
         }
 
-        public Category GetById(int id)
+        public CategoryUoW GetById(int id)
         {
             return _dbset.Include(x => x.Items).Where(x => x.CategoryId == id).FirstOrDefault();
         }

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using UoWandRepositories.Interfaces;
 using Domain.Entities;
 using System.Data.Entity;
+using UoWandRepositories.Entities;
 
 namespace UoWandRepositories.Repositories
 {
-    class OrderRepository: ShopGenericRepository<Order>, IOrderRepository
+    class OrderRepository: ShopGenericRepository<OrderUoW>, IOrderRepository
     {
         public OrderRepository(DbContext context)
             : base(context)
@@ -17,7 +18,7 @@ namespace UoWandRepositories.Repositories
 
         }
 
-        public Order GetById(int id)
+        public OrderUoW GetById(int id)
         {
             return _dbset.Include(x => x.Items).Where(x => x.OrderId == id).FirstOrDefault();
         }

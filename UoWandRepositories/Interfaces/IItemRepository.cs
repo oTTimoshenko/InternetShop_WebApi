@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UoWandRepositories.Entities;
 
 namespace UoWandRepositories.Interfaces
 {
-    public interface IItemRepository:IShopGenericRepository<Item>
+    public interface IItemRepository:IShopGenericRepository<ItemUoW>
     {
-        Item GetById(int id);
+        ItemUoW GetById(int id);
     }
 }
