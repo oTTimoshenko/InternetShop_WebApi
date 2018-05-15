@@ -65,7 +65,6 @@ namespace UoWandRepositories.UnitOfWork
 
         public int Commit()// Save changes
         {
-
             return _dbContext.SaveChanges();
         }
 
