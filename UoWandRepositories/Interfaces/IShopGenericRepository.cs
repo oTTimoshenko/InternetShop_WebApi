@@ -14,6 +14,5 @@ namespace UoWandRepositories.Interfaces
         T Add(T entity);
         T Delete(T entity);
         void Edit(T entity);
-        void Save();
     }
 }

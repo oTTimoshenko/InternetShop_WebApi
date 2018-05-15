@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UoWandRepositories.Interfaces
+namespace BLL.Services
 {
-   public interface IShopUnitOfWork:IDisposable
+    class CRUDService
     {
-        int Save();
     }
 }

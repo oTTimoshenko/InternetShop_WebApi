@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UoWandRepositories.Interfaces
+namespace BLL.Interfaces
 {
-   public interface IShopUnitOfWork:IDisposable
+    public interface ICRUDService
     {
-        int Save();
+        void Add();
+        void Update();
+
     }
 }

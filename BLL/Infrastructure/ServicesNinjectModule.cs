@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL
+namespace BLL.Infrastructure
 {
-    public class Class1
+    class ServicesNinjectModule
     {
     }
 }

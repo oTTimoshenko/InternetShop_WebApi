@@ -9,5 +9,6 @@ namespace UoWandRepositories.Interfaces
 {
     public interface IItemRepository:IShopGenericRepository<Item>
     {
+        Item GetById(int id);
     }
 }

@@ -9,6 +9,6 @@ namespace UoWandRepositories.Interfaces
 {
     public interface ICategoryRepository:IShopGenericRepository<Category>
     {
-
+        Category GetById(int id);
     }
 }

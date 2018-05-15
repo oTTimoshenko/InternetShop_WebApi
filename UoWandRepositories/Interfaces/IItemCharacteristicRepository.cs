@@ -9,5 +9,6 @@ namespace UoWandRepositories.Interfaces
 {
     public interface IItemCharacteristicRepository:IShopGenericRepository<ItemCharacteristic>
     {
+        ItemCharacteristic GetById(int id);
     }
 }
