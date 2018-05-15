@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UoWandRepositories.Entities;
 using UoWandRepositories.Interfaces;
 using UoWandRepositories.Repositories;
 
@@ -13,13 +14,14 @@ namespace UoWandRepositories.UnitOfWork
     public class ShopUnitOfWork : IShopUnitOfWork //UnitOfWork for predmet area
     {
         private DbContext _dbContext;
+
         private ICategoryRepository categoryRepository;
         private IItemCharacteristicRepository itemCharacteristicRepository;
         private IItemRepository itemRepository;
         private IOrderRepository orderRepository;
 
-        public ShopUnitOfWork(DbContext context, 
-            ICategoryRepository categoryRepository, 
+        public ShopUnitOfWork(DbContext context,
+            ICategoryRepository categoryRepository,
             IItemCharacteristicRepository itemCharacteristicRepository,
             IItemRepository itemRepository,
             IOrderRepository orderRepository)
@@ -32,7 +34,7 @@ namespace UoWandRepositories.UnitOfWork
 
         }
 
-        public IShopGenericRepository<Category> Categories
+        public ICategoryRepository Categories
         {
             get
             {
@@ -40,7 +42,7 @@ namespace UoWandRepositories.UnitOfWork
             }
         }
 
-        public IShopGenericRepository<ItemCharacteristic> ItemCharacteristics
+        public IItemCharacteristicRepository ItemCharacteristics
         {
             get
             {
@@ -48,7 +50,7 @@ namespace UoWandRepositories.UnitOfWork
             }
         }
 
-        public IShopGenericRepository<Item> Items
+        public IItemRepository Items
         {
             get
             {
@@ -56,53 +58,53 @@ namespace UoWandRepositories.UnitOfWork
             }
         }
 
-        public IShopGenericRepository<Order> Orders
+        public IOrderRepository Orders
         {
             get
             {
                 return orderRepository;
             }
         }
-                /*
-        public IShopGenericRepository<Category> Categories
-        {
-            get
-            {
-                if (categoryRepository == null)
-                    categoryRepository = new CategoryRepository(_dbContext);
-                return categoryRepository;
-            }
-        }
+        /*
+public IShopGenericRepository<Category> Categories
+{
+    get
+    {
+        if (categoryRepository == null)
+            categoryRepository = new CategoryRepository(_dbContext);
+        return categoryRepository;
+    }
+}
 
-        public IShopGenericRepository<ItemCharacteristic> ItemCharacteristics
-        {
-            get
-            {
-                if (itemCharacteristicRepository == null)
-                    itemCharacteristicRepository = new ItemCharacteristicRepository(_dbContext);
-                return itemCharacteristicRepository;
-            }
-        }
+public IShopGenericRepository<ItemCharacteristic> ItemCharacteristics
+{
+    get
+    {
+        if (itemCharacteristicRepository == null)
+            itemCharacteristicRepository = new ItemCharacteristicRepository(_dbContext);
+        return itemCharacteristicRepository;
+    }
+}
 
-        public IShopGenericRepository<Item> Items
-        {
-            get
-            {
-                if (itemRepository == null)
-                    itemRepository = new ItemRepository(_dbContext);
-                return itemRepository;
-            }
-        }
+public IShopGenericRepository<Item> Items
+{
+    get
+    {
+        if (itemRepository == null)
+            itemRepository = new ItemRepository(_dbContext);
+        return itemRepository;
+    }
+}
 
-        public IShopGenericRepository<Order> Orders
-        {
-            get
-            {
-                if (orderRepository == null)
-                    orderRepository = new OrderRepository(_dbContext);
-                return orderRepository;
-            }
-        }*/
+public IShopGenericRepository<Order> Orders
+{
+    get
+    {
+        if (orderRepository == null)
+            orderRepository = new OrderRepository(_dbContext);
+        return orderRepository;
+    }
+}*/
 
         public int Save()// Save changes
         {
