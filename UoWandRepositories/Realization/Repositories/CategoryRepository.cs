@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UoWandRepositories.Entities;
 using UoWandRepositories.Interfaces;
+using AutoMapper;
 
 namespace UoWandRepositories.Repositories
 {
@@ -20,7 +21,7 @@ namespace UoWandRepositories.Repositories
 
         public CategoryUoW GetById(int id)
         {
-            return _dbset.Include(x => x.Items).Where(x => x.CategoryId == id).FirstOrDefault();
+            return Mapper.Map<Category, CategoryUoW>(_dbset.Include(x => x.Items).Where(x => x.CategoryId == id).FirstOrDefault());
         }
     }
 }

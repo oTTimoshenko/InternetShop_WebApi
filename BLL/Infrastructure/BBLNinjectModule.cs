@@ -9,10 +9,10 @@ using UoWandRepositories.UnitOfWork;
 
 namespace BLL.Infrastructure
 {
-    public class ServicesNinjectModule:NinjectModule
+    public class BBLNinjectModule:NinjectModule
     {
         private string connectionString;
-        public ServicesNinjectModule(string connection)
+        public BBLNinjectModule(string connection)
         {
             connectionString = connection;
         }

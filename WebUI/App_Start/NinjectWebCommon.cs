@@ -5,12 +5,15 @@ namespace WebUI.App_Start
 {
     using System;
     using System.Web;
-
+    using BLL.Infrastructure;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
     using Ninject.Web.Common;
     using Ninject.Web.WebApi;
+    using UoWandRepositories.Infrastructure;
+    using WebUI.Infrastructure;
+    using Ninject.Modules;
 
     public static class NinjectWebCommon 
     {
@@ -40,7 +43,14 @@ namespace WebUI.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            WebApiNinjectModule webApiNinjectModule = new WebApiNinjectModule();
+            BBLNinjectModule bbLNinjectModule = new BBLNinjectModule("InternetShopConnection");
+            UoWNinjectModule uoWNinjectModule = new UoWNinjectModule();
+
+            INinjectModule[] modules = new INinjectModule[] { webApiNinjectModule, bbLNinjectModule, uoWNinjectModule };
+
+            var kernel = new StandardKernel(modules);
+
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);

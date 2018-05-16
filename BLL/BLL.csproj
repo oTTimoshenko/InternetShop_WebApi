@@ -55,7 +55,7 @@
     <Compile Include="DTO\ItemDTO.cs" />
     <Compile Include="DTO\OrderDTO.cs" />
     <Compile Include="Infrastructure\BLLMappingConfig.cs" />
-    <Compile Include="Infrastructure\ServicesNinjectModule.cs" />
+    <Compile Include="Infrastructure\BBLNinjectModule.cs" />
     <Compile Include="Interfaces\IAdminService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />
