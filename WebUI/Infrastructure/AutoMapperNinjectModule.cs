@@ -9,7 +9,7 @@ using UoWandRepositories.Infrastructure;
 
 namespace WebUI.Infrastructure
 {
-    public class AutoMapperNinjectModule : NinjectModule
+    public class AutoMapperNinjectModule : NinjectModule // Module for IMapper
     {
         public override void Load()
         {
