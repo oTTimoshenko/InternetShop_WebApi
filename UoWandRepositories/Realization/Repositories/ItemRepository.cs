@@ -7,20 +7,20 @@ using UoWandRepositories.Interfaces;
 using Domain.Entities;
 using System.Data.Entity;
 using UoWandRepositories.Entities;
+using AutoMapper;
 
 namespace UoWandRepositories.Repositories
 {
-    public class ItemRepository: ShopGenericRepository<ItemUoW>, IItemRepository
+    public class ItemRepository: ShopGenericRepository<ItemUoW, Item>, IItemRepository
     {
-        public ItemRepository(DbContext context)
-            : base(context)
-        {
-
-        }
+        public ItemRepository(string connectionString, IMapper mapper)
+            : base(connectionString, mapper)
+        { }
 
         public ItemUoW GetById(int id)
         {
-            return _dbset.Include(x => x.Category).Where(x => x.ItemId == id).FirstOrDefault();
+            var entity = mapper.Map<ItemUoW>(_dbset.Include(x => x.Category).Where(x => x.ItemId == id).FirstOrDefault());
+            return entity;
         }
     }
 }

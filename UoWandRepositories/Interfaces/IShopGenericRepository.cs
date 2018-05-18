@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace UoWandRepositories.Interfaces
 {
-    public interface IShopGenericRepository<T> where T: class
+    public interface IShopGenericRepository<TInputEntity, TDomainEntity>
+        where TInputEntity: class 
+        where TDomainEntity:class
     {
-        IEnumerable<T> GetAll();
-        IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate);
-        T Add(T entity);
-        T Delete(T entity);
-        void Edit(T entity);
+        IEnumerable<TInputEntity> GetAll();
+        //IEnumerable<TInputEntity> FindBy(Expression<Func<TInputEntity, bool>> predicate);
+        void Add(TInputEntity entity);
+        void Delete(TInputEntity entity);
+        void DeleteById(int Id);
+        void Edit(TInputEntity entity);
     }
 }

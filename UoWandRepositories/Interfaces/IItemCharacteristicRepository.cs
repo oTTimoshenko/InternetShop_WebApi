@@ -8,7 +8,7 @@ using UoWandRepositories.Entities;
 
 namespace UoWandRepositories.Interfaces
 {
-    public interface IItemCharacteristicRepository:IShopGenericRepository<ItemCharacteristicUoW>
+    public interface IItemCharacteristicRepository:IShopGenericRepository<ItemCharacteristicUoW, ItemCharacteristic>
     {
         ItemCharacteristicUoW GetById(int id);
     }

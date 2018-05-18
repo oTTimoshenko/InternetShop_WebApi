@@ -5,46 +5,59 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UoWandRepositories.Interfaces;
-
+using AutoMapper;
+using Domain.Context;
 
 namespace UoWandRepositories.Repositories
 {
-    public abstract class ShopGenericRepository<T>:IShopGenericRepository<T> 
-        where T:class
+    public abstract class ShopGenericRepository<TInputEntity, TDomainEntity>:IShopGenericRepository<TInputEntity, TDomainEntity> 
+        where TInputEntity : class
+        where TDomainEntity:class
     {
         protected DbContext _entities;
-        protected readonly IDbSet<T> _dbset;
+        protected readonly IDbSet<TDomainEntity> _dbset;
+        protected readonly IMapper mapper;
 
-        public ShopGenericRepository(DbContext context)
+        public ShopGenericRepository(string connectionString, IMapper mapper)
         {
-            _entities = context;
-            _dbset = context.Set<T>();
+            _entities = new EFshopContext(connectionString);
+            _dbset = _entities.Set<TDomainEntity>();
+            this.mapper = mapper;
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual IEnumerable<TInputEntity> GetAll()
         {
-            return _dbset.AsEnumerable<T>();
+            return mapper.Map<IEnumerable<TInputEntity>>(_dbset.AsEnumerable<TDomainEntity>());
         }
 
-        public IEnumerable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        /*public IEnumerable<TInputEntity> FindBy(System.Linq.Expressions.Expression<Func<TInputEntity, bool>> predicate)
         {
-            IEnumerable<T> query = _dbset.Where(predicate).AsEnumerable();
+            IEnumerable<TInputEntity> query = _dbset.Where(predicate).AsEnumerable();
             return query;
+        }*/
+
+        public virtual void Add(TInputEntity entity)
+        {
+            var _entity = mapper.Map<TDomainEntity>(entity);
+             _dbset.Add(_entity);
         }
 
-        public virtual T Add(T entity)
+        public virtual void Delete(TInputEntity entity)
         {
-            return _dbset.Add(entity);
+            var _entity = mapper.Map<TDomainEntity>(entity);
+            _dbset.Remove(_entity);
         }
 
-        public virtual T Delete(T entity)
+        public virtual void DeleteById(int Id)
         {
-            return _dbset.Remove(entity);
+            var _entity = _dbset.Find(Id);
+            _dbset.Remove(_entity);
         }
 
-        public virtual void Edit(T entity)
+        public virtual void Edit(TInputEntity entity)
         {
-            _entities.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            var _entity = mapper.Map<TDomainEntity>(entity);
+            _entities.Entry(_entity).State = EntityState.Modified;
         }
     }
 }

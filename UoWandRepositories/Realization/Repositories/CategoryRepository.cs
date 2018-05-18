@@ -11,17 +11,16 @@ using AutoMapper;
 
 namespace UoWandRepositories.Repositories
 {
-    public class CategoryRepository:ShopGenericRepository<CategoryUoW>, ICategoryRepository
+    public class CategoryRepository:ShopGenericRepository<CategoryUoW, Category>, ICategoryRepository
     {
-        public CategoryRepository(DbContext context)
-            : base(context)
-        {
-
-        }
+        public CategoryRepository(string connectionString, IMapper mapper)
+            : base(connectionString, mapper)
+        { }
 
         public CategoryUoW GetById(int id)
         {
-            return Mapper.Map<Category, CategoryUoW>(_dbset.Include(x => x.Items).Where(x => x.CategoryId == id).FirstOrDefault());
+            var entity = mapper.Map<CategoryUoW>(_dbset.Include(x => x.Items).Where(x => x.CategoryId == id).FirstOrDefault());
+            return entity;
         }
     }
 }

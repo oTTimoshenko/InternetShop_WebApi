@@ -13,29 +13,31 @@ namespace BLL.Services
 {
     public class AdminService : IAdminService
     {
-        IShopUnitOfWork db;
+        private readonly IShopUnitOfWork db;
+        private readonly IMapper mapper;
 
-        public AdminService(IShopUnitOfWork _db)
+        public AdminService(IShopUnitOfWork _db, IMapper mapper)
         {
             db = _db;
+            this.mapper = mapper;
         }
 
         public void AddCategory(CategoryDTO categoryDTO)
         {
-            var category = Mapper.Map<CategoryDTO, CategoryUoW>(categoryDTO);
+            var category = mapper.Map<CategoryUoW>(categoryDTO);
             db.Categories.Add(category);
             db.Save();
         }
 
         public CategoryDTO GetCategory(int categoryId)
         {
-            return Mapper.Map<CategoryUoW, CategoryDTO>(db.Categories.GetById(categoryId));
+            return mapper.Map<CategoryDTO>(db.Categories.GetById(categoryId));
         }
 
         public void RemoveCategory(int categoryId)
         {
-            var category = db.Categories.GetById(categoryId);
-            db.Categories.Delete(category);
+            db.Categories.DeleteById(categoryId);
+            db.Save();
         }
     }
 }

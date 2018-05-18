@@ -13,10 +13,10 @@ namespace UoWandRepositories.Infrastructure
     {
         public UoWMappingConfig()
         {
-            CreateMap<ItemCharacteristic, ItemCharacteristicUoW>().ReverseMap();
-            CreateMap<Category, CategoryUoW>().ReverseMap();
-            CreateMap<Item, ItemUoW>().ReverseMap();
-            CreateMap<Order, OrderUoW>().ReverseMap();          
+            CreateMap<ItemCharacteristic, ItemCharacteristicUoW>().ReverseMap().MaxDepth(5);
+            CreateMap<Category, CategoryUoW>().ReverseMap().MaxDepth(5);
+            CreateMap<Item, ItemUoW>().ReverseMap().MaxDepth(5);
+            CreateMap<Order, OrderUoW>().ReverseMap().MaxDepth(5);          
         }
     }
 }

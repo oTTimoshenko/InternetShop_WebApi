@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.Context;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -20,18 +21,17 @@ namespace UoWandRepositories.UnitOfWork
         private IItemRepository itemRepository;
         private IOrderRepository orderRepository;
 
-        public ShopUnitOfWork(DbContext context,
+        public ShopUnitOfWork(string connectionString,
             ICategoryRepository categoryRepository,
             IItemCharacteristicRepository itemCharacteristicRepository,
             IItemRepository itemRepository,
             IOrderRepository orderRepository)
         {
-            _dbContext = context;
+            _dbContext = new EFshopContext(connectionString);
             this.categoryRepository = categoryRepository;
             this.itemCharacteristicRepository = itemCharacteristicRepository;
             this.itemRepository = itemRepository;
             this.orderRepository = orderRepository;
-
         }
 
         public ICategoryRepository Categories

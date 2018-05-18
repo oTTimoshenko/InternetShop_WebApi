@@ -8,7 +8,7 @@ using UoWandRepositories.Entities;
 
 namespace UoWandRepositories.Interfaces
 {
-    public interface IOrderRepository: IShopGenericRepository<OrderUoW>
+    public interface IOrderRepository: IShopGenericRepository<OrderUoW, Order>
     {
         OrderUoW GetById(int id);
     }

@@ -12,7 +12,9 @@ namespace WebUI.Infrastructure
     {
         public override void Load()
         {
-            Bind<IAdminService>().To<AdminService>();
+
         }
+
+
     }
 }

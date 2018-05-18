@@ -65,6 +65,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{d4f44fd8-43f1-4a67-b054-4a8edda88c50}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UoWandRepositories\UoWandRepositories.csproj">
       <Project>{e1611cb0-0771-4247-bb24-1b64dc14ffff}</Project>
       <Name>UoWandRepositories</Name>

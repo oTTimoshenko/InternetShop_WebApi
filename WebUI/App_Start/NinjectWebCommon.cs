@@ -44,10 +44,11 @@ namespace WebUI.App_Start
         private static IKernel CreateKernel()
         {
             WebApiNinjectModule webApiNinjectModule = new WebApiNinjectModule();
-            BBLNinjectModule bbLNinjectModule = new BBLNinjectModule("InternetShopConnection");
-            UoWNinjectModule uoWNinjectModule = new UoWNinjectModule();
+            BBLNinjectModule bbLNinjectModule = new BBLNinjectModule();
+            UoWNinjectModule uoWNinjectModule = new UoWNinjectModule("InternetShopConnection");
+            AutoMapperNinjectModule autoMapperNinjectModule = new AutoMapperNinjectModule();
 
-            INinjectModule[] modules = new INinjectModule[] { webApiNinjectModule, bbLNinjectModule, uoWNinjectModule };
+            INinjectModule[] modules = new INinjectModule[] { webApiNinjectModule, bbLNinjectModule, uoWNinjectModule, autoMapperNinjectModule };
 
             var kernel = new StandardKernel(modules);
 
