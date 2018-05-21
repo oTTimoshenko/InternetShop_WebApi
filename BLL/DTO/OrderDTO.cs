@@ -8,7 +8,6 @@ namespace BLL.DTO
         public int OrderId { get; set; }
         public DateTime Time { get; set; }
         public double Price { get; set; } 
-        public ShipmentDTO Shipment { get; set; }
         public StateDTO State { get; set; }
 
         public ICollection<ItemDTO> Items { get; set; }
@@ -18,14 +17,6 @@ namespace BLL.DTO
             Items = new List<ItemDTO>();
         }
     }
-
-    public enum ShipmentDTO
-    {
-        UkrPost,
-        DHLPost,
-        Pickup
-    }
-
     public enum StateDTO
     {
         Confirmed,

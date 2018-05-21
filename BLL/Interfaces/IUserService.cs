@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BLL.Interfaces
 {
-    public interface IManageService
+    public interface IUserService
     {
-        void ConfirmOrder(int id);
-        void DeclineOrder(int id);
+        void MakeOrder(int[] items);
     }
 }

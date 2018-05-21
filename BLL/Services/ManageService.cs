@@ -6,9 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using UoWandRepositories.Interfaces;
 using UoWandRepositories.Entities;
+using BLL.Interfaces;
+
 namespace BLL.Services
 {
-    public class ManageService
+    public class ManageService : IManageService
     {
         private readonly IShopUnitOfWork db;
         private readonly IMapper mapper;

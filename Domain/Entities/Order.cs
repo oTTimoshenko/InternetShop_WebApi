@@ -14,7 +14,6 @@ namespace Domain.Entities
         public int OrderId { get; set; }
         public DateTime Time { get; set; } // Time of order
         public double Price { get; set; } // Total order price
-        public Shipment Shipment { get; set; } // shipment service
         public State State { get; set; } // state of order
 
         public ICollection<Item> Items { get; set; }
@@ -23,13 +22,6 @@ namespace Domain.Entities
         {
             Items = new List<Item>();
         }
-    }
-
-    public enum Shipment
-    {
-        UkrPost,
-        DHLPost,
-        Pickup
     }
 
     public enum State

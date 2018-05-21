@@ -59,10 +59,12 @@
     <Compile Include="Interfaces\IAdminService.cs" />
     <Compile Include="Interfaces\IManageService.cs" />
     <Compile Include="Interfaces\IOutputService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\ManageService.cs" />
     <Compile Include="Services\OutputService.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
