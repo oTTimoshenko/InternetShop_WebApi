@@ -16,13 +16,15 @@ namespace UoWandRepositories.UnitOfWork
 {
     public class ShopUnitOfWork : IShopUnitOfWork //UnitOfWork for predmet area
     {
+
         private IEFshopContext _dbContext;
         private IMapper _mapper;
-
+        
         private ICategoryRepository categoryRepository;
         private IItemCharacteristicRepository itemCharacteristicRepository;
         private IItemRepository itemRepository;
         private IOrderRepository orderRepository;
+
 
         public ShopUnitOfWork(string connectionString, IMapper mapper)
         {
@@ -34,6 +36,8 @@ namespace UoWandRepositories.UnitOfWork
         {
             get
             {
+                if (categoryRepository == null)
+                    categoryRepository = new CategoryRepository(_dbContext);
                 return categoryRepository;
             }
         }
@@ -42,6 +46,8 @@ namespace UoWandRepositories.UnitOfWork
         {
             get
             {
+                if (itemCharacteristicRepository == null)
+                    itemCharacteristicRepository = new ItemCharacteristicRepository(_dbContext);
                 return itemCharacteristicRepository;
             }
         }
@@ -50,6 +56,8 @@ namespace UoWandRepositories.UnitOfWork
         {
             get
             {
+                if (itemRepository == null)
+                    itemRepository = new ItemRepository(_dbContext);
                 return itemRepository;
             }
         }
@@ -58,6 +66,8 @@ namespace UoWandRepositories.UnitOfWork
         {
             get
             {
+                if (orderRepository == null)
+                    orderRepository = new OrderRepository(_dbContext);
                 return orderRepository;
             }
         }*/
@@ -71,6 +81,7 @@ namespace UoWandRepositories.UnitOfWork
                 return categoryRepository;
             }
         }
+
 
         public IItemCharacteristicRepository ItemCharacteristics
         {
