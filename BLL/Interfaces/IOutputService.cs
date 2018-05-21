@@ -9,7 +9,7 @@ namespace BLL.Interfaces
 {
     public interface IOutputService
     {
-        IEnumerable<ItemDTO> GetAllItems();
+        IEnumerable<ItemDTO> GetAllItems(); //Paggination
         void Sort();
         ItemDTO Search();
     }
