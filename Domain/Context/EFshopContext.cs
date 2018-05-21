@@ -5,11 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using Domain.Entities;
+using Domain.Interfaces;
 
 namespace Domain.Context
 {
-    public class EFshopContext:DbContext
+    public class EFshopContext:DbContext, IEFshopContext
     {
+        static EFshopContext()
+        {
+            Database.SetInitializer<EFshopContext>(new DropCreateDatabaseIfModelChanges<EFshopContext>());
+        }
+        
         public EFshopContext(string connectionString)
             :base(connectionString)
         { }
@@ -22,8 +28,8 @@ namespace Domain.Context
             .Map(m =>
             {
              m.ToTable("ItemOrders");
-            m.MapLeftKey("ItemId");
-             m.MapRightKey("OrderId");
+             m.MapLeftKey("OrderId");
+             m.MapRightKey("ItemId");
             });
 
             base.OnModelCreating(modelBuilder);
@@ -32,6 +38,9 @@ namespace Domain.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<ItemCharacteristic> ItemCharacteristics { get; set; }    
+        public DbSet<ItemCharacteristic> ItemCharacteristics { get; set; }
+        
     }
+
+    
 }

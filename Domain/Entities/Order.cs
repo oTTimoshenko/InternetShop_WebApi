@@ -16,6 +16,7 @@ namespace Domain.Entities
         public double Price { get; set; } // Total order price
         public int MyProperty { get; set; }
         public Shipment Shipment { get; set; } // shipment service
+        public State State { get; set; } // state of order
 
         public ICollection<Item> Items { get; set; }
 
@@ -30,5 +31,12 @@ namespace Domain.Entities
         UkrPost,
         DHLPost,
         Pickup
+    }
+
+    public enum State
+    {
+        Confirmed,
+        In_process,
+        Declined
     }
 }
