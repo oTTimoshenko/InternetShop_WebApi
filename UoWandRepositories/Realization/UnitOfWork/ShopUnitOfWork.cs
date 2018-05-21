@@ -9,24 +9,30 @@ using System.Threading.Tasks;
 using UoWandRepositories.Entities;
 using UoWandRepositories.Interfaces;
 using UoWandRepositories.Repositories;
+using Domain.Interfaces;
+using AutoMapper;
 
 namespace UoWandRepositories.UnitOfWork
 {
     public class ShopUnitOfWork : IShopUnitOfWork //UnitOfWork for predmet area
     {
-        private DbContext _dbContext;
+
+        private IEFshopContext _dbContext;
+        private IMapper _mapper;
         
         private ICategoryRepository categoryRepository;
         private IItemCharacteristicRepository itemCharacteristicRepository;
         private IItemRepository itemRepository;
         private IOrderRepository orderRepository;
 
-        public ShopUnitOfWork(string connectionString)
+
+        public ShopUnitOfWork(string connectionString, IMapper mapper)
         {
             _dbContext = new EFshopContext(connectionString);
+            _mapper = mapper;
         }
 
-        public ICategoryRepository Categories
+        /*public ICategoryRepository Categories
         {
             get
             {
@@ -62,6 +68,47 @@ namespace UoWandRepositories.UnitOfWork
             {
                 if (orderRepository == null)
                     orderRepository = new OrderRepository(_dbContext);
+                return orderRepository;
+            }
+        }*/
+
+        public ICategoryRepository Categories
+        {
+            get
+            {
+                if (categoryRepository == null)
+                    categoryRepository = new CategoryRepository(_dbContext, _mapper);
+                return categoryRepository;
+            }
+        }
+
+
+        public IItemCharacteristicRepository ItemCharacteristics
+        {
+            get
+            {
+                if (itemCharacteristicRepository == null)
+                    itemCharacteristicRepository = new ItemCharacteristicRepository(_dbContext, _mapper);
+                return itemCharacteristicRepository;
+            }
+        }
+
+        public IItemRepository Items
+        {
+            get
+            {
+                if (itemRepository == null)
+                    itemRepository = new ItemRepository(_dbContext, _mapper);
+                return itemRepository;
+            }
+        }
+
+        public IOrderRepository Orders
+        {
+            get
+            {
+                if (orderRepository == null)
+                    orderRepository = new OrderRepository(_dbContext, _mapper);
                 return orderRepository;
             }
         }

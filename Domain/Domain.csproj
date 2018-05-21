@@ -52,6 +52,7 @@
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\ItemCharacteristic.cs" />
     <Compile Include="Entities\Order.cs" />
+    <Compile Include="Interfaces\IEFshopContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

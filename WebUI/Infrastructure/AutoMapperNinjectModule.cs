@@ -25,8 +25,6 @@ namespace WebUI.Infrastructure
                 config.AddProfile(new BLLMappingConfig());
                 config.AddProfile(new UoWMappingConfig());
                 config.AddProfile(new WebApiMappingConfig());
-                // .... other mappings, Profiles, etc.              
-
             });
 
             Mapper.AssertConfigurationIsValid(); // optional

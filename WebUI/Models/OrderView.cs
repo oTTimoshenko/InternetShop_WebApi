@@ -12,6 +12,7 @@ namespace WebUI.Models
         public double Price { get; set; }
         public int MyProperty { get; set; }
         public ShipmentView Shipment { get; set; }
+        public StateView State { get; set; }
 
         public ICollection<ItemView> Items { get; set; }
 
@@ -26,5 +27,12 @@ namespace WebUI.Models
         UkrPost,
         DHLPost,
         Pickup
+    }
+
+    public enum StateView
+    {
+        Confirmed,
+        In_process,
+        Declined
     }
 }

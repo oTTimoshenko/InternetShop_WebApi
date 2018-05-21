@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UoWandRepositories.Interfaces;
 using AutoMapper;
 using Domain.Context;
+using Domain.Interfaces;
 
 namespace UoWandRepositories.Repositories
 {
@@ -14,13 +15,13 @@ namespace UoWandRepositories.Repositories
         where TInputEntity : class
         where TDomainEntity:class
     {
-        protected DbContext _entities;
+        protected IEFshopContext _entities;
         protected readonly IDbSet<TDomainEntity> _dbset;
         protected readonly IMapper mapper;
 
-        public ShopGenericRepository(string connectionString, IMapper mapper)
+        public ShopGenericRepository(IEFshopContext context, IMapper mapper)
         {
-            _entities = new EFshopContext(connectionString);
+            _entities = context;
             _dbset = _entities.Set<TDomainEntity>();
             this.mapper = mapper;
         }

@@ -10,7 +10,22 @@ namespace BLL.Interfaces
     public interface IAdminService
     {
         void AddCategory(CategoryDTO categoryDTO);
-        void RemoveCategory(int categoryId);
-        CategoryDTO GetCategory(int categoryId);
+        void UpdateCategory(CategoryDTO categoryDTO);
+        void RemoveCategory(int Id);
+
+        void AddItemCharacteristic(ItemCharacteristicsDTO itemCharacteristicsDTO);
+        void UpdateItemCharacteristic(ItemCharacteristicsDTO itemCharacteristicsDTO);
+        void RemoveItemCharacteristic(int Id);
+
+        void AddItem(ItemDTO itemDTO);
+        void UpdateItem(ItemDTO itemDTO);
+        void RemoveItem(int Id);
+
+        CategoryDTO GetCategory(int Id);
+        ItemCharacteristicsDTO GetItemCharacteristics(int Id);
+        ItemDTO GetItem(int Id);
+        OrderDTO GetOrder(int Id);
+
+        void Dispose(bool disposing);
     }
 }

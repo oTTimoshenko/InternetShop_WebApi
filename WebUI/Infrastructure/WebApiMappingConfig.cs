@@ -16,6 +16,7 @@ namespace WebUI.Infrastructure
             CreateMap<ItemView, ItemDTO>().ReverseMap().MaxDepth(5);
             CreateMap<ItemCharacteristicView, ItemCharacteristicsDTO>().ReverseMap().MaxDepth(5);
             CreateMap<OrderView, OrderDTO>().ReverseMap().MaxDepth(5);
+            CreateMap<StateView, StateDTO>().ReverseMap();
         }
     }
 }
