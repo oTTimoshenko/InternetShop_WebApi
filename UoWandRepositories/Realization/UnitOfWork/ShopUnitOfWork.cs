@@ -15,29 +15,23 @@ namespace UoWandRepositories.UnitOfWork
     public class ShopUnitOfWork : IShopUnitOfWork //UnitOfWork for predmet area
     {
         private DbContext _dbContext;
-
+        
         private ICategoryRepository categoryRepository;
         private IItemCharacteristicRepository itemCharacteristicRepository;
         private IItemRepository itemRepository;
         private IOrderRepository orderRepository;
 
-        public ShopUnitOfWork(string connectionString,
-            ICategoryRepository categoryRepository,
-            IItemCharacteristicRepository itemCharacteristicRepository,
-            IItemRepository itemRepository,
-            IOrderRepository orderRepository)
+        public ShopUnitOfWork(string connectionString)
         {
             _dbContext = new EFshopContext(connectionString);
-            this.categoryRepository = categoryRepository;
-            this.itemCharacteristicRepository = itemCharacteristicRepository;
-            this.itemRepository = itemRepository;
-            this.orderRepository = orderRepository;
         }
 
         public ICategoryRepository Categories
         {
             get
             {
+                if (categoryRepository == null)
+                    categoryRepository = new CategoryRepository(_dbContext);
                 return categoryRepository;
             }
         }
@@ -46,6 +40,8 @@ namespace UoWandRepositories.UnitOfWork
         {
             get
             {
+                if (itemCharacteristicRepository == null)
+                    itemCharacteristicRepository = new ItemCharacteristicRepository(_dbContext);
                 return itemCharacteristicRepository;
             }
         }
@@ -54,6 +50,8 @@ namespace UoWandRepositories.UnitOfWork
         {
             get
             {
+                if (itemRepository == null)
+                    itemRepository = new ItemRepository(_dbContext);
                 return itemRepository;
             }
         }
@@ -62,49 +60,11 @@ namespace UoWandRepositories.UnitOfWork
         {
             get
             {
+                if (orderRepository == null)
+                    orderRepository = new OrderRepository(_dbContext);
                 return orderRepository;
             }
         }
-        /*
-public IShopGenericRepository<Category> Categories
-{
-    get
-    {
-        if (categoryRepository == null)
-            categoryRepository = new CategoryRepository(_dbContext);
-        return categoryRepository;
-    }
-}
-
-public IShopGenericRepository<ItemCharacteristic> ItemCharacteristics
-{
-    get
-    {
-        if (itemCharacteristicRepository == null)
-            itemCharacteristicRepository = new ItemCharacteristicRepository(_dbContext);
-        return itemCharacteristicRepository;
-    }
-}
-
-public IShopGenericRepository<Item> Items
-{
-    get
-    {
-        if (itemRepository == null)
-            itemRepository = new ItemRepository(_dbContext);
-        return itemRepository;
-    }
-}
-
-public IShopGenericRepository<Order> Orders
-{
-    get
-    {
-        if (orderRepository == null)
-            orderRepository = new OrderRepository(_dbContext);
-        return orderRepository;
-    }
-}*/
 
         public int Save()// Save changes
         {
