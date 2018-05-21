@@ -11,7 +11,6 @@ namespace UoWandRepositories.Entities
         public int OrderId { get; set; }
         public DateTime Time { get; set; }
         public double Price { get; set; }
-        public int MyProperty { get; set; }
         public ShipmentUoW Shipment { get; set; }
         public StateUoW State { get; set; }
 

@@ -14,7 +14,6 @@ namespace Domain.Entities
         public int OrderId { get; set; }
         public DateTime Time { get; set; } // Time of order
         public double Price { get; set; } // Total order price
-        public int MyProperty { get; set; }
         public Shipment Shipment { get; set; } // shipment service
         public State State { get; set; } // state of order
 
