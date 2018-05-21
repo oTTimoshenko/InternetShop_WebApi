@@ -29,15 +29,82 @@ namespace BLL.Services
             db.Save();
         }
 
-        public CategoryDTO GetCategory(int categoryId)
+        public void UpdateCategory(CategoryDTO categoryDTO)
         {
-            return mapper.Map<CategoryDTO>(db.Categories.GetById(categoryId));
+            var category = mapper.Map<CategoryUoW>(categoryDTO);
+            db.Categories.Edit(category);
+            db.Save();
         }
 
-        public void RemoveCategory(int categoryId)
+        public void RemoveCategory(int Id)
         {
-            db.Categories.DeleteById(categoryId);
+            db.Categories.DeleteById(Id);
             db.Save();
+        }
+
+        public void AddItemCharacteristic(ItemCharacteristicsDTO itemCharacteristicsDTO)
+        {
+            var itemCharacteristic = mapper.Map<ItemCharacteristicUoW>(itemCharacteristicsDTO);
+            db.ItemCharacteristics.Add(itemCharacteristic);
+            db.Save();
+        }
+
+        public void UpdateItemCharacteristic(ItemCharacteristicsDTO itemCharacteristicsDTO)
+        {
+            var itemCharacteristic = mapper.Map<ItemCharacteristicUoW>(itemCharacteristicsDTO);
+            db.ItemCharacteristics.Edit(itemCharacteristic);
+            db.Save();
+        }
+
+        public void RemoveItemCharacteristic(int Id)
+        {
+            db.ItemCharacteristics.DeleteById(Id);
+            db.Save();
+        }
+
+        public void AddItem(ItemDTO itemDTO)
+        {
+            var item = mapper.Map<ItemUoW>(itemDTO);
+            db.Items.Add(item);
+            db.Save();
+        }
+
+        public void UpdateItem(ItemDTO itemDTO)
+        {
+            var item = mapper.Map<ItemUoW>(itemDTO);
+            db.Items.Edit(item);
+            db.Save();
+        }
+
+        public void RemoveItem(int Id)
+        {
+            db.Items.DeleteById(Id);
+            db.Save();
+        }
+
+        public CategoryDTO GetCategory(int Id)
+        {
+            return mapper.Map<CategoryDTO>(db.Categories.GetById(Id));
+        }
+
+        public ItemCharacteristicsDTO GetItemCharacteristics(int Id)
+        {
+            return mapper.Map<ItemCharacteristicsDTO>(db.ItemCharacteristics.GetById(Id));
+        }
+
+        public ItemDTO GetItem(int Id)
+        {
+            return mapper.Map<ItemDTO>(db.Items.GetById(Id));
+        }
+
+        public OrderDTO GetOrder(int Id)
+        {
+            return mapper.Map<OrderDTO>(db.Orders.GetById(Id));
+        }
+
+        public void Dispose(bool disposing)
+        {
+            db.Dispose();
         }
     }
 }

@@ -8,13 +8,13 @@ using Domain.Entities;
 using System.Data.Entity;
 using UoWandRepositories.Entities;
 using AutoMapper;
-
+using Domain.Interfaces;
 namespace UoWandRepositories.Repositories
 {
     class OrderRepository : ShopGenericRepository<OrderUoW, Order>, IOrderRepository
     {
-        public OrderRepository(string connectionString, IMapper mapper)
-            : base(connectionString, mapper)
+        public OrderRepository(IEFshopContext context, IMapper mapper)
+            : base(context, mapper)
         { }
 
         public OrderUoW GetById(int id)

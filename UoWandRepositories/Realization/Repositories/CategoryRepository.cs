@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 using UoWandRepositories.Entities;
 using UoWandRepositories.Interfaces;
 using AutoMapper;
+using Domain.Interfaces;
 
 namespace UoWandRepositories.Repositories
 {
     public class CategoryRepository:ShopGenericRepository<CategoryUoW, Category>, ICategoryRepository
     {
-        public CategoryRepository(string connectionString, IMapper mapper)
-            : base(connectionString, mapper)
+        public CategoryRepository(IEFshopContext context, IMapper mapper)
+            : base(context, mapper)
         { }
 
         public CategoryUoW GetById(int id)

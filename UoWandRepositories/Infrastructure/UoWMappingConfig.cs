@@ -16,7 +16,8 @@ namespace UoWandRepositories.Infrastructure
             CreateMap<ItemCharacteristic, ItemCharacteristicUoW>().ReverseMap().MaxDepth(5);
             CreateMap<Category, CategoryUoW>().ReverseMap().MaxDepth(5);
             CreateMap<Item, ItemUoW>().ReverseMap().MaxDepth(5);
-            CreateMap<Order, OrderUoW>().ReverseMap().MaxDepth(5);          
+            CreateMap<Order, OrderUoW>().ReverseMap().MaxDepth(5);
+            CreateMap<State, StateUoW>().ReverseMap();
         }
     }
 }

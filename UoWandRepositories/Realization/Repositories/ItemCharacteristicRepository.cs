@@ -8,13 +8,14 @@ using Domain.Entities;
 using System.Data.Entity;
 using UoWandRepositories.Entities;
 using AutoMapper;
+using Domain.Interfaces;
 
 namespace UoWandRepositories.Repositories
 {
     public class ItemCharacteristicRepository: ShopGenericRepository<ItemCharacteristicUoW, ItemCharacteristic>, IItemCharacteristicRepository
     {
-        public ItemCharacteristicRepository(string connectionString, IMapper mapper)
-             : base(connectionString, mapper)
+        public ItemCharacteristicRepository(IEFshopContext context, IMapper mapper)
+            : base(context, mapper)
         { }
 
         public ItemCharacteristicUoW GetById(int id)

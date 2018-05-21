@@ -13,6 +13,7 @@ namespace UoWandRepositories.Entities
         public double Price { get; set; }
         public int MyProperty { get; set; }
         public ShipmentUoW Shipment { get; set; }
+        public StateUoW State { get; set; }
 
         public ICollection<ItemUoW> Items { get; set; }
 
@@ -27,5 +28,12 @@ namespace UoWandRepositories.Entities
         UkrPost,
         DHLPost,
         Pickup
+    }
+
+    public enum StateUoW
+    {
+        Confirmed,
+        In_process,
+        Declined
     }
 }

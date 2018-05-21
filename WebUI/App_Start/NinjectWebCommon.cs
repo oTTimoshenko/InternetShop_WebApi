@@ -47,11 +47,11 @@ namespace WebUI.App_Start
             BBLNinjectModule bbLNinjectModule = new BBLNinjectModule();
             UoWNinjectModule uoWNinjectModule = new UoWNinjectModule("InternetShopConnection");
             AutoMapperNinjectModule autoMapperNinjectModule = new AutoMapperNinjectModule();
-
+            
             INinjectModule[] modules = new INinjectModule[] { webApiNinjectModule, bbLNinjectModule, uoWNinjectModule, autoMapperNinjectModule };
-
+           
             var kernel = new StandardKernel(modules);
-
+            
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
@@ -74,6 +74,7 @@ namespace WebUI.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            
         }        
     }
 }

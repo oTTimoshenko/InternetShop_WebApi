@@ -14,31 +14,43 @@ namespace WebUI.Controllers
     public class TestController : ApiController
     {
         IAdminService adminService;
-        //IMapper mapper;
+        IMapper mapper;
         
 
-        public TestController(IAdminService _adminService)
+        public TestController(IAdminService _adminService, IMapper mapper)
         {
             adminService = _adminService;
-           // this.mapper = mapper;
+            this.mapper = mapper;
         }
 
         public TestController()
         { }
 
+        [HttpPost]
         public void PostCategory(string name)
         {
-            CategoryDTO category = new CategoryDTO() { CategoryName = name, Items = null };
-            //var _category = mapper.Map<CategoryDTO>(category);
-            adminService.AddCategory(category);
+            CategoryView category = new CategoryView() { CategoryName = name};
+            //CategoryDTO _category = new CategoryDTO() { CategoryName = name }; 
+            var _category = mapper.Map<CategoryDTO>(category);
+            adminService.AddCategory(_category);
         }
 
+        [HttpGet]
         public CategoryView GetCategory(int id)
         {
-            var category = adminService.GetCategory(id);
-            CategoryView res = new CategoryView() { CategoryName = category.CategoryName, Items = null };
-            //CategoryView _category = mapper.Map<CategoryView>(category);
-            return res;
+            var category1 = adminService.GetCategory(id);
+            //CategoryView res = new CategoryView() { CategoryName = category.CategoryName, Items = null };
+            CategoryView _category1 = mapper.Map<CategoryView>(category1);
+            return _category1;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                adminService.Dispose(disposing);
+            }
+            base.Dispose(disposing);
         }
     }
 }
