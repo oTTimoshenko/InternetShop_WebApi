@@ -9,8 +9,10 @@ namespace BLL.Interfaces
 {
     public interface IOutputService
     {
-        IEnumerable<ItemDTO> GetAllItems(); //Paggination
-        void Sort();
-        ItemDTO Search();
+        IEnumerable<ItemDTO> GetAllItems();
+        IEnumerable<ItemDTO> GetItemsWithPagination(int page, int pageSize);
+        IEnumerable<ItemDTO> SortBy(BLLSortCriteria sortParam);
+        IEnumerable<ItemDTO> SortByDescending(BLLSortCriteria sortParam);
+        IEnumerable<ItemDTO> Search(string request);
     }
 }

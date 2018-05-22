@@ -12,11 +12,12 @@ namespace WebUI.Infrastructure
     {
         public WebApiMappingConfig()
         {
-            CreateMap<CategoryView, CategoryDTO>().ReverseMap().MaxDepth(5);
-            CreateMap<ItemView, ItemDTO>().ReverseMap().MaxDepth(5);
-            CreateMap<ItemCharacteristicView, ItemCharacteristicsDTO>().ReverseMap().MaxDepth(5);
-            CreateMap<OrderView, OrderDTO>().ReverseMap().MaxDepth(5);
+            CreateMap<CategoryView, CategoryDTO>().ReverseMap().MaxDepth(2);  
+            CreateMap<ItemView, ItemDTO>().ReverseMap().MaxDepth(2);
+            CreateMap<ItemCharacteristicView, ItemCharacteristicsDTO>().ReverseMap().MaxDepth(2);
+            CreateMap<OrderView, OrderDTO>().ReverseMap().MaxDepth(2);
             CreateMap<StateView, StateDTO>().ReverseMap();
+            CreateMap<SortCriteriaView, BLLSortCriteria>().ReverseMap();
         }
     }
 }

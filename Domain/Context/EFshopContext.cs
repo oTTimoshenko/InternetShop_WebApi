@@ -39,7 +39,6 @@ namespace Domain.Context
         public DbSet<Item> Items { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<ItemCharacteristic> ItemCharacteristics { get; set; }
-        
     }
 
     
