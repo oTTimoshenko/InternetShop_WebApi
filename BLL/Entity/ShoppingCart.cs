@@ -8,6 +8,10 @@ namespace BLL.Entity
 {
     public class ShoppingCart
     {
+        public ShoppingCart()
+        {
+            lines = new List<ShoppingCartLine>();
+        }
         public List<ShoppingCartLine> lines { get; set; }
         public double overallPrice { get; set; }
     }

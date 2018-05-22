@@ -11,15 +11,20 @@ namespace BLL.Services
 {
     public class UserService : IUserService
     {
-
+        private readonly IShopUnitOfWork _db;
+        private readonly IMapper _mapper;
         private ShoppingCart lineCollection;
 
-        public UserService()
+        public UserService(IShopUnitOfWork db, IMapper mapper)
         {
+            _db = db;
+            _mapper = mapper;
+            lineCollection = new ShoppingCart();
         }
 
         public void AddItem(ItemDTO item, int quantity)
         {
+
             if (item != null)
             {
                 lineCollection.lines.Add(new ShoppingCartLine

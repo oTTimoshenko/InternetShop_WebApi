@@ -16,6 +16,8 @@ namespace BLL.Infrastructure
         public override void Load()
         {
             Bind<IAdminService>().To<AdminService>();
+            Bind<IUserService>().To<UserService>();
+            Bind<IManageService>().To<ManageService>();
         }
     }
 }
