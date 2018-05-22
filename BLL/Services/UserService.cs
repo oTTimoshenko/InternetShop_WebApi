@@ -4,58 +4,64 @@ using System.Collections.Generic;
 using System.Linq;
 using UoWandRepositories.Interfaces;
 using BLL.Entity;
+using UoWandRepositories.Entities;
+using BLL.Interfaces;
 
 namespace BLL.Services
 {
-    public class UserService 
+    public class UserService : IUserService
     {
-        //private readonly IShopUnitOfWork db;
-        //private readonly IMapper mapper;
 
-        private List<ShoppingCart> cartCollection;
+        private ShoppingCart lineCollection;
 
         public UserService()
         {
-            //db = _db;
-            //this.mapper = mapper;
-            cartCollection = new List<ShoppingCart>();
         }
 
         public void AddItem(ItemDTO item, int quantity)
         {
-            ShoppingCart cart = cartCollection
-                .Where(p => p.Item.ItemId == item.ItemId)
-                .FirstOrDefault();
-
-            if (cart == null)
+            if (item != null)
             {
-                cartCollection.Add(new ShoppingCart
+                lineCollection.lines.Add(new ShoppingCartLine
                 {
                     Item = item,
                     Quantity = quantity
                 });
             }
-            else
-            {
-                cart.Quantity += quantity;
-            }
         }
 
         public void RemoveItem(ItemDTO item)
         {
-            cartCollection.RemoveAll(l => l.Item.ItemId == item.ItemId);
+            lineCollection.lines.RemoveAll(l => l.Item.ItemId == item.ItemId);
         }
 
         public void Clear()
         {
-            cartCollection.Clear();
+            lineCollection.lines.Clear();
         }
 
-        public IEnumerable<ShoppingCart> Carts
+        public IEnumerable<ShoppingCartLine> Lines
         {
-            get { return cartCollection; }
+            get { return lineCollection.lines; }
         }
 
+        public ShoppingCart ComposeCart()
+        {
+            var cartPrice = 0.00;
+
+            foreach (var item in lineCollection.lines)
+            {
+                cartPrice += item.Item.Price;
+            }
+
+            var cart = new ShoppingCart
+            {
+                lines = lineCollection.lines,
+                overallPrice = cartPrice
+            };
+
+            return cart;
+        }
 
 
 
@@ -63,15 +69,22 @@ namespace BLL.Services
         //{
         //    var items = new List<ItemDTO>();
 
-        //    foreach(int index in itemIds)
+        //    foreach (int index in itemIds)
         //    {
         //        var map = mapper.Map<ItemDTO>(db.Items.GetById(index));
         //        items.Add(map);
         //    }
+        //    var orders = new List<OrderUoW>();
+        //    double checkpay = 0.00;
+
+        //    foreach (var item in items)
+        //    {
+        //        //orders.Add(new OrderUoW );
+        //    }
 
         //    var order = new OrderDTO
         //    {
-        //        Time = DateTime.Now,
+        //        Time = System.DateTime.Now,
         //        Items = items
         //    };
 

@@ -13,6 +13,6 @@ namespace BLL.Interfaces
         void AddItem(ItemDTO item, int quantity);
         void RemoveItem(ItemDTO item);
         void Clear();
-        IEnumerable<ShoppingCart> Carts();
+        ShoppingCart ComposeCart();
     }
 }

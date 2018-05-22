@@ -55,6 +55,7 @@
     <Compile Include="DTO\ItemDTO.cs" />
     <Compile Include="DTO\OrderDTO.cs" />
     <Compile Include="Entity\ShoppingCart.cs" />
+    <Compile Include="Entity\ShoppingCartLine.cs" />
     <Compile Include="Infrastructure\BLLMappingConfig.cs" />
     <Compile Include="Infrastructure\BBLNinjectModule.cs" />
     <Compile Include="Interfaces\IAdminService.cs" />

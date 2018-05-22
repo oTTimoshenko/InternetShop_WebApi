@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BLL.DTO;
+
 namespace BLL.Entity
 {
     public class ShoppingCart
     {
-        public ItemDTO Item { get; set; }
-        public int Quantity { get; set; }
+        public List<ShoppingCartLine> lines { get; set; }
+        public double overallPrice { get; set; }
     }
 }
