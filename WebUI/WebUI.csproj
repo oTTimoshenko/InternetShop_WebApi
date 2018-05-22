@@ -212,6 +212,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OutputController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -222,8 +223,12 @@
     <Compile Include="Infrastructure\WebApiNinjectModule.cs" />
     <Compile Include="Models\CategoryView.cs" />
     <Compile Include="Models\ItemCharacteristicView.cs" />
+    <Compile Include="Models\ItemsListViewModel.cs" />
     <Compile Include="Models\ItemView.cs" />
     <Compile Include="Models\OrderView.cs" />
+    <Compile Include="Models\PaginationParams.cs" />
+    <Compile Include="Models\PagingInfo.cs" />
+    <Compile Include="Models\SortCriteriaView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
