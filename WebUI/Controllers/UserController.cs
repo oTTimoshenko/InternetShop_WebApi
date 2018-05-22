@@ -45,8 +45,16 @@ namespace WebUI.Controllers
         //public ShoppingCart ComposeCart()
         //{
         //    var cart = _user.ComposeCart();
-            
+
         //    return cart;
         //}
+
+        //[HttpPost]
+        //[Route("api/OrderPanel/addOrder")]
+        //public OrderDTO MakeOrder([FromBody]ShoppingCart cart)
+        //{
+
+        //}
+
     }
 }

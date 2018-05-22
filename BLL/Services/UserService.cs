@@ -68,6 +68,22 @@ namespace BLL.Services
             return cart;
         }
 
+        public OrderDTO MakeOrder(ShoppingCart cart)
+        {
+            List<ItemDTO> items = new List<ItemDTO>();
+            foreach (var item in cart.lines)
+            {
+                items.Add(item.Item);
+            }
+            var order = new OrderDTO
+            {
+                Items = items,
+                Time = System.DateTime.Now,
+                Price = cart.overallPrice
+            };
+            return order;
+        }
+
 
 
         //public void MakeOrder(int[] itemIds)

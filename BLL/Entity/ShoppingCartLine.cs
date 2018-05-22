@@ -11,5 +11,6 @@ namespace BLL.Entity
         public int ShoppingCartId { get; set; }
         public ItemDTO Item { get; set; }
         public int Quantity { get; set; }
+
     }
 }
