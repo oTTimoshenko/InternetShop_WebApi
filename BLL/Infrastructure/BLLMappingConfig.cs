@@ -13,10 +13,10 @@ namespace BLL.Infrastructure
     {
         public BLLMappingConfig()
         {
-            CreateMap<CategoryDTO, CategoryUoW>().ReverseMap().MaxDepth(5);
-            CreateMap<ItemDTO, ItemUoW>().ReverseMap().MaxDepth(5);
-            CreateMap<ItemCharacteristicsDTO, ItemCharacteristicUoW>().ReverseMap().MaxDepth(5);
-            CreateMap<OrderDTO, OrderUoW>().ReverseMap().MaxDepth(5);
+            CreateMap<CategoryDTO, CategoryUoW>().ReverseMap().MaxDepth(2);
+            CreateMap<ItemDTO, ItemUoW>().ReverseMap().MaxDepth(2);
+            CreateMap<ItemCharacteristicsDTO, ItemCharacteristicUoW>().ReverseMap().MaxDepth(2);
+            CreateMap<OrderDTO, OrderUoW>().ReverseMap().MaxDepth(2);
             CreateMap<StateDTO, StateUoW>().ReverseMap();
         }
     }
