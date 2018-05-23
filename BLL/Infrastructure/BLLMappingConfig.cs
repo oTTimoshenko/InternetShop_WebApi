@@ -18,6 +18,8 @@ namespace BLL.Infrastructure
             CreateMap<ItemCharacteristicsDTO, ItemCharacteristicUoW>().ReverseMap().MaxDepth(5);
             CreateMap<OrderDTO, OrderUoW>().ReverseMap().MaxDepth(5);
             CreateMap<StateDTO, StateUoW>().ReverseMap();
+            //CreateMap<IEnumerable<ItemDTO>, IEnumerable<ItemUoW>>().ReverseMap();
+            //CreateMap<IEnumerable<OrderDTO>, IEnumerable<OrderUoW>>().ReverseMap();
         }
     }
 }
