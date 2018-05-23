@@ -10,9 +10,10 @@ namespace BLL.Interfaces
 {
     public interface IUserService
     {
-        void AddItem(ItemDTO item, int quantity);
-        void RemoveItem(ItemDTO item);
-        void Clear();
-        ShoppingCart ComposeCart();
+        void AddItem(ItemDTO item, int quantity, IShoppingCart _lineCollection);
+        void RemoveItem(ItemDTO item, IShoppingCart _lineCollection);
+        void Clear(IShoppingCart _lineCollection);
+        IShoppingCart ComposeCart(IShoppingCart _lineCollection);
+        OrderDTO MakeOrder(IShoppingCart cart);
     }
 }

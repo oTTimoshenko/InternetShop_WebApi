@@ -13,62 +13,57 @@ namespace BLL.Services
     {
         private readonly IShopUnitOfWork _db;
         private readonly IMapper _mapper;
-        private ShoppingCart lineCollection;
 
         public UserService(IShopUnitOfWork db, IMapper mapper)
         {
             _db = db;
             _mapper = mapper;
-            lineCollection = new ShoppingCart();
         }
 
-        public void AddItem(ItemDTO item, int quantity)
+        public void AddItem(ItemDTO item, int quantity, IShoppingCart _lineCollection)
         {
 
             if (item != null)
             {
-                lineCollection.lines.Add(new ShoppingCartLine
+                _lineCollection.lines.Add(new ShoppingCartLine
                 {
                     Item = item,
                     Quantity = quantity
                 });
             }
+
         }
 
-        public void RemoveItem(ItemDTO item)
+        public void RemoveItem(ItemDTO item, IShoppingCart _lineCollection)
         {
-            lineCollection.lines.RemoveAll(l => l.Item.ItemId == item.ItemId);
+            _lineCollection.lines.RemoveAll(l => l.Item.ItemId == item.ItemId);
         }
 
-        public void Clear()
+        public void Clear(IShoppingCart _lineCollection)
         {
-            lineCollection.lines.Clear();
+            _lineCollection.lines.Clear();
         }
 
-        public IEnumerable<ShoppingCartLine> Lines
-        {
-            get { return lineCollection.lines; }
-        }
 
-        public ShoppingCart ComposeCart()
+        public IShoppingCart ComposeCart(IShoppingCart _lineCollection)
         {
             var cartPrice = 0.00;
 
-            foreach (var item in lineCollection.lines)
+            foreach (var item in _lineCollection.lines)
             {
                 cartPrice += item.Item.Price;
             }
 
             var cart = new ShoppingCart
             {
-                lines = lineCollection.lines,
+                lines = _lineCollection.lines,
                 overallPrice = cartPrice
             };
 
             return cart;
         }
 
-        public OrderDTO MakeOrder(ShoppingCart cart)
+        public OrderDTO MakeOrder(IShoppingCart cart)
         {
             List<ItemDTO> items = new List<ItemDTO>();
             foreach (var item in cart.lines)

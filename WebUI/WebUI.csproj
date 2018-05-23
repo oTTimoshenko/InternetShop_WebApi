@@ -223,9 +223,12 @@
     <Compile Include="Infrastructure\WebApiMappingConfig.cs" />
     <Compile Include="Infrastructure\WebApiNinjectModule.cs" />
     <Compile Include="Models\CategoryView.cs" />
+    <Compile Include="Models\IShoppingCartView.cs" />
     <Compile Include="Models\ItemCharacteristicView.cs" />
     <Compile Include="Models\ItemView.cs" />
     <Compile Include="Models\OrderView.cs" />
+    <Compile Include="Models\ShoppingCartLineView.cs" />
+    <Compile Include="Models\ShoppingCartView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

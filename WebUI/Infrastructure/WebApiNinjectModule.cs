@@ -12,7 +12,6 @@ namespace WebUI.Infrastructure
     {
         public override void Load()
         {
-
         }
 
 
