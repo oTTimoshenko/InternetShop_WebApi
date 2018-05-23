@@ -11,5 +11,6 @@ namespace BLL.Interfaces
     {
         List<ShoppingCartLine> lines { get; set; }
         double overallPrice { get; set; }
+
     }
 }

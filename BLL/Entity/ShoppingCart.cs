@@ -13,6 +13,7 @@ namespace BLL.Entity
         {
             lines = new List<ShoppingCartLine>();
         }
+
         public List<ShoppingCartLine> lines { get; set; }
         public double overallPrice { get; set; }
 

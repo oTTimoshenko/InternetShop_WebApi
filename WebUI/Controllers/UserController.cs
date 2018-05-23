@@ -16,12 +16,14 @@ namespace WebUI.Controllers
     {
         IUserService _user;
         IMapper _mapper;
+        IShoppingCart icart;
         ShoppingCartView _cartView;
 
-        public UserController(IUserService user, IMapper mapper)
+        public UserController(IUserService user, IMapper mapper, IShoppingCart _icart)
         {
             _user = user;
             _mapper = mapper;
+            icart = _icart;
             _cartView = new ShoppingCartView();
         }
         public UserController() { }
@@ -31,8 +33,9 @@ namespace WebUI.Controllers
         public void AddItem([FromBody]ItemView item, int quantity)
         {
             var _item = _mapper.Map<ItemDTO>(item);
-            ShoppingCart cartView = _mapper.Map<ShoppingCart>(_cartView);
-            _user.AddItem(_item, quantity, cartView);
+            //IShoppingCart cartView = _mapper.Map<ShoppingCart>(_cartView);
+            
+            _user.AddItem(_item, quantity, icart);
         }
 
         [HttpDelete]
@@ -40,27 +43,27 @@ namespace WebUI.Controllers
         public void RemoveItem([FromBody]ItemView item)
         {
             var _item = _mapper.Map<ItemDTO>(item);
-            ShoppingCart cartView = _mapper.Map<ShoppingCart>(_cartView);
-            _user.RemoveItem(_item, cartView);
+            //IShoppingCart cartView = _mapper.Map<ShoppingCart>(_cartView);
+            _user.RemoveItem(_item, icart);
         }
 
         [HttpPut]
         [Route("api/CartPanel/composeOrder")]
-        public ShoppingCartView ComposeCart()
+        public IShoppingCart ComposeCart()
         {
-            ShoppingCart cartView = _mapper.Map<ShoppingCart>(_cartView);
-            cartView.lines = _mapper.Map<List<ShoppingCartLine>>(_cartView.lines);
-            var cart = _user.ComposeCart(cartView);
-            ShoppingCartView _cart = _mapper.Map<ShoppingCartView>(cart);
-            return _cart;
+            //IShoppingCart cartView = _mapper.Map<ShoppingCart>(_cartView);
+            //cartView.lines = _mapper.Map<List<ShoppingCartLine>>(_cartView.lines);
+            var cart = _user.ComposeCart(icart);
+
+            return cart;
         }
 
         [HttpPost]
         [Route("api/OrderPanel/addOrder")]
         public OrderView MakeOrder([FromBody]ShoppingCartView order)
         {
-            var _cart = _mapper.Map<ShoppingCart>(order);
-            var _order =_user.MakeOrder(_cart);
+            //var _cart = _mapper.Map<ShoppingCart>(order);
+            var _order =_user.MakeOrder(icart);
             OrderView _ordermap = _mapper.Map<OrderView>(_order);
             return _ordermap;
         }
