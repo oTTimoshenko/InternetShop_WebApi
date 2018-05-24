@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BLL.DTO;
 using BLL.Interfaces;
+using BLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace BLL.Services
         {
             var all_items = this.GetAllItems();
 
-            return all_items.Where(item => item.ItemName.ToLower().Contains(request));
+            return all_items.Where(item => item.ItemName.ToLower().Contains(request.ToLower()));
         }
 
         public IEnumerable<ItemDTO> SortBy(BLLSortCriteria sortParam)
@@ -67,6 +68,112 @@ namespace BLL.Services
                 res = all_items.OrderByDescending(x => x.Price);
 
             return res;
+        }
+
+        public IEnumerable<ItemDTO> FilterByCategory(int categoryId)
+        {
+            var items = db.Items.GetAll().Where(item => item.CategoryId == categoryId);
+            IEnumerable<ItemDTO> _items = mapper.Map<IEnumerable<ItemDTO>>(items);
+
+            return _items;
+        }
+
+        private IEnumerable<ItemDTO> FilterByRAM(IEnumerable<ItemDTO> _items, int[] values)
+        {
+            List<ItemDTO> result = new List<ItemDTO>();
+
+            foreach (var value in values)
+            {
+                var items = _items.Where(item => db.ItemCharacteristics.GetById(item.ItemId).RAM == value);
+                result.AddRange(items);
+            }
+
+            return result;
+        }
+
+        private IEnumerable<ItemDTO> FilterByMemorySize(IEnumerable<ItemDTO> _items, int[] values)
+        {
+
+            List<ItemDTO> result = new List<ItemDTO>();
+
+            foreach (var value in values)
+            {
+                var items = _items.Where(item => db.ItemCharacteristics.GetById(item.ItemId).Memory == value);
+                result.AddRange(items);
+            }
+
+            return result;
+
+        }
+
+        private IEnumerable<ItemDTO> FilterByCamera(IEnumerable<ItemDTO> _items, double[] values)
+        {
+            List<ItemDTO> result = new List<ItemDTO>();
+
+            foreach (var value in values)
+            {
+                var items = _items.Where(item => db.ItemCharacteristics.GetById(item.ItemId).Camera == value);
+                result.AddRange(items);
+            }
+
+            return result;
+
+
+        }
+
+        private IEnumerable<ItemDTO> FilterByDisplayDiagonal(IEnumerable<ItemDTO> _items, double[] values)
+        {
+            List<ItemDTO> result = new List<ItemDTO>();
+
+            foreach (var value in values)
+            {
+                var items = _items.Where(item => db.ItemCharacteristics.GetById(item.ItemId).DisplayDiagonal == value);
+                result.AddRange(items);
+            }
+
+            return result;
+        }
+
+        private IEnumerable<ItemDTO> FilterByPrice(IEnumerable<ItemDTO> _items, int minPrice, int maxPrice)
+        {
+            return _items.Where(item => item.Price >= minPrice && item.Price <= maxPrice);
+        }
+
+        public IEnumerable<ItemDTO> FilterByCriteria(FilterCriteries filter)
+        {
+            IEnumerable<ItemDTO> result = new List<ItemDTO>();
+
+            if (filter.RAM != null)
+                result = FilterByRAM(GetAllItems(), filter.RAM);
+
+            if (filter.MemorySize != null)
+                result = FilterByMemorySize(result, filter.MemorySize);
+
+            if (filter.Camera != null)
+                result = FilterByCamera(result, filter.Camera);
+
+            if (filter.DisplayDiagonal != null)
+                result = FilterByDisplayDiagonal(result, filter.DisplayDiagonal);
+
+            if(filter.minPrice == 0 || filter.minPrice == 0)
+            {
+                filter.minPrice = getDefaultMinPrice(result);
+                filter.maxPrice = getDefaultMaxPrice(result);
+            }
+
+            result = FilterByPrice(result, filter.minPrice, filter.maxPrice);
+
+            return result;
+        }
+
+        private int getDefaultMinPrice(IEnumerable<ItemDTO> _items)
+        {
+            return (int)_items.Min(x => x.Price);
+        }
+
+        private int getDefaultMaxPrice(IEnumerable<ItemDTO> _items)
+        {
+            return (int)_items.Max(x => x.Price);
         }
     }
 }

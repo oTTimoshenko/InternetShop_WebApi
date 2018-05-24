@@ -13,6 +13,6 @@ namespace WebUI.Models
         public int Memory { get; set; }
         public double Camera { get; set; }
 
-        public ItemView Item { get; set; }
+        //public ItemView Item { get; set; }
     }
 }

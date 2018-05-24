@@ -22,64 +22,136 @@ namespace BLL.Services
             this.mapper = mapper;
         }
 
-        public void AddCategory(CategoryDTO categoryDTO)
+        public bool AddCategory(CategoryDTO categoryDTO)
         {
-            var category = mapper.Map<CategoryUoW>(categoryDTO);
-            db.Categories.Add(category);
-            db.Save();
+            try
+            {
+                var category = mapper.Map<CategoryUoW>(categoryDTO);
+                db.Categories.Add(category);
+                db.Save();
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public void UpdateCategory(CategoryDTO categoryDTO)
+        public bool UpdateCategory(CategoryDTO categoryDTO)
         {
-            var category = mapper.Map<CategoryUoW>(categoryDTO);
-            db.Categories.Edit(category);
-            db.Save();
+            try
+            {
+                var category = mapper.Map<CategoryUoW>(categoryDTO);
+                db.Categories.Edit(category);
+                db.Save();
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public void RemoveCategory(int Id)
+        public bool RemoveCategory(int Id)
         {
-            db.Categories.DeleteById(Id);
-            db.Save();
+            try
+            {
+                db.Categories.DeleteById(Id);
+                db.Save();
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public void AddItemCharacteristic(ItemCharacteristicsDTO itemCharacteristicsDTO)
+        public bool AddItemCharacteristic(ItemCharacteristicsDTO itemCharacteristicsDTO)
         {
-            var itemCharacteristic = mapper.Map<ItemCharacteristicUoW>(itemCharacteristicsDTO);
-            db.ItemCharacteristics.Add(itemCharacteristic);
-            db.Save();
+            try
+            {
+                var itemCharacteristic = mapper.Map<ItemCharacteristicUoW>(itemCharacteristicsDTO);
+                db.ItemCharacteristics.Add(itemCharacteristic);
+                db.Save();
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public void UpdateItemCharacteristic(ItemCharacteristicsDTO itemCharacteristicsDTO)
+        public bool UpdateItemCharacteristic(ItemCharacteristicsDTO itemCharacteristicsDTO)
         {
-            var itemCharacteristic = mapper.Map<ItemCharacteristicUoW>(itemCharacteristicsDTO);
-            db.ItemCharacteristics.Edit(itemCharacteristic);
-            db.Save();
+            try
+            {
+                var itemCharacteristic = mapper.Map<ItemCharacteristicUoW>(itemCharacteristicsDTO);
+                db.ItemCharacteristics.Edit(itemCharacteristic);
+                db.Save();
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public void RemoveItemCharacteristic(int Id)
+        public bool RemoveItemCharacteristic(int Id)
         {
-            db.ItemCharacteristics.DeleteById(Id);
-            db.Save();
+            try
+            {
+                db.ItemCharacteristics.DeleteById(Id);
+                db.Save();
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public void AddItem(ItemDTO itemDTO)
+        public bool AddItem(ItemDTO itemDTO)
         {
-            var item = mapper.Map<ItemUoW>(itemDTO);
-            db.Items.Add(item);
-            db.Save();
+            try
+            {
+                var item = mapper.Map<ItemUoW>(itemDTO);
+                db.Items.Add(item);
+                db.Save();
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public void UpdateItem(ItemDTO itemDTO)
+        public bool UpdateItem(ItemDTO itemDTO)
         {
-            var item = mapper.Map<ItemUoW>(itemDTO);
-            db.Items.Edit(item);
-            db.Save();
+            try
+            {
+                var item = mapper.Map<ItemUoW>(itemDTO);
+                db.Items.Edit(item);
+                db.Save();
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public void RemoveItem(int Id)
+        public bool RemoveItem(int Id)
         {
-            db.Items.DeleteById(Id);
-            db.Save();
+            try
+            {
+                db.Items.DeleteById(Id);
+                db.Save();
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+            return true;
         }
 
         public CategoryDTO GetCategory(int Id)

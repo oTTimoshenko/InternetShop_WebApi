@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using AutoMapper;
 using BLL.DTO;
+using BLL.Models;
 using WebUI.Models;
 
 namespace WebUI.Infrastructure
@@ -12,12 +13,12 @@ namespace WebUI.Infrastructure
     {
         public WebApiMappingConfig()
         {
-            CreateMap<CategoryView, CategoryDTO>().ReverseMap().MaxDepth(2);  
+            CreateMap<CategoryView, CategoryDTO>().ReverseMap().MaxDepth(2);
             CreateMap<ItemView, ItemDTO>().ReverseMap().MaxDepth(2);
             CreateMap<ItemCharacteristicView, ItemCharacteristicsDTO>().ReverseMap().MaxDepth(2);
             CreateMap<OrderView, OrderDTO>().ReverseMap().MaxDepth(2);
+            CreateMap<FilterCriteries, WebApiFilterCriteries>().ReverseMap();
             CreateMap<StateView, StateDTO>().ReverseMap();
-            CreateMap<SortCriteriaView, BLLSortCriteria>().ReverseMap();
         }
     }
 }

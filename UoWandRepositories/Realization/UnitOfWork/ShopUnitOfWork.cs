@@ -32,45 +32,6 @@ namespace UoWandRepositories.UnitOfWork
             _mapper = mapper;
         }
 
-        /*public ICategoryRepository Categories
-        {
-            get
-            {
-                if (categoryRepository == null)
-                    categoryRepository = new CategoryRepository(_dbContext);
-                return categoryRepository;
-            }
-        }
-
-        public IItemCharacteristicRepository ItemCharacteristics
-        {
-            get
-            {
-                if (itemCharacteristicRepository == null)
-                    itemCharacteristicRepository = new ItemCharacteristicRepository(_dbContext);
-                return itemCharacteristicRepository;
-            }
-        }
-
-        public IItemRepository Items
-        {
-            get
-            {
-                if (itemRepository == null)
-                    itemRepository = new ItemRepository(_dbContext);
-                return itemRepository;
-            }
-        }
-
-        public IOrderRepository Orders
-        {
-            get
-            {
-                if (orderRepository == null)
-                    orderRepository = new OrderRepository(_dbContext);
-                return orderRepository;
-            }
-        }*/
 
         public ICategoryRepository Categories
         {

@@ -19,7 +19,7 @@ namespace UoWandRepositories.Repositories
 
         public ItemUoW GetById(int id)
         {
-            var entity = mapper.Map<ItemUoW>(_dbset.Include(x => x.Category).Where(x => x.ItemId == id).FirstOrDefault());
+            var entity = mapper.Map<ItemUoW>(_dbset.Include(x => x.ItemCharacteristic).Where(x => x.ItemId == id).FirstOrDefault());
             return entity;
         }
     }
