@@ -30,38 +30,6 @@ namespace UoWandRepositories.UnitOfWork
             _mapper = mapper;
         }
 
-        /*public ICategoryRepository Categories
-        {
-            get
-            {
-                return categoryRepository;
-            }
-        }
-
-        public IItemCharacteristicRepository ItemCharacteristics
-        {
-            get
-            {
-                return itemCharacteristicRepository;
-            }
-        }
-
-        public IItemRepository Items
-        {
-            get
-            {
-                return itemRepository;
-            }
-        }
-
-        public IOrderRepository Orders
-        {
-            get
-            {
-                return orderRepository;
-            }
-        }*/
-
         public ICategoryRepository Categories
         {
             get

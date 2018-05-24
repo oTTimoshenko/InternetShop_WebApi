@@ -14,6 +14,6 @@ namespace UoWandRepositories.Entities
         public int Memory { get; set; }
         public double Camera { get; set; }
 
-        public ItemUoW Item { get; set; }
+        //public ItemUoW Item { get; set; }
     }
 }

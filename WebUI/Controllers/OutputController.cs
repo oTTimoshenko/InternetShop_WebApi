@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BLL.DTO;
 using BLL.Interfaces;
+using BLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,6 @@ namespace WebUI.Controllers
                     ItemsPerPage = pageSize,
                     TotalItems = outputService.GetAllItems().Count()
                 }
-
             };
 
             return model;
@@ -68,7 +68,7 @@ namespace WebUI.Controllers
 
         [HttpGet]
         [Route("api/output/sort_by/{sortCriteria}")]
-        public IEnumerable<ItemView> SortBy(SortCriteriaView sortCriteria)
+        public IEnumerable<ItemView> SortBy(SortCriteriaView sortCriteria = SortCriteriaView.NAME)
         {
             var criteria = mapper.Map<BLLSortCriteria>(sortCriteria);
             var sorted_items = mapper.Map<IEnumerable<ItemView>>(outputService.SortBy(criteria));
@@ -78,12 +78,34 @@ namespace WebUI.Controllers
 
         [HttpGet]
         [Route("api/output/sort_by_descending/{sortCriteria}")]
-        public IEnumerable<ItemView> SortByDescending(SortCriteriaView sortCriteria)
+        public IEnumerable<ItemView> SortByDescending(SortCriteriaView sortCriteria = SortCriteriaView.NAME)
         {
             var criteria = mapper.Map<BLLSortCriteria>(sortCriteria);
             var sorted_items = mapper.Map<IEnumerable<ItemView>>(outputService.SortByDescending(criteria));
 
             return sorted_items;
+        }
+
+        [HttpGet]
+        [Route("api/output/filter_by_criteries")]
+        public IEnumerable<ItemView> FilterByCriteries([FromUri]WebApiFilterCriteries criteries)
+        {
+            var _criteries = mapper.Map<FilterCriteries>(criteries);
+
+            var items = outputService.FilterByCriteria(_criteries);
+            var filter_items = mapper.Map<IEnumerable<ItemView>>(items);
+
+            return filter_items;
+        }
+
+        [HttpGet]
+        [Route("api/output/filter_by_category/{id}")]
+        public IEnumerable<ItemView> FilterByCategory(int id)
+        {
+            var items = outputService.FilterByCategory(id);
+            var filter_items = mapper.Map<IEnumerable<ItemView>>(items);
+
+            return filter_items;
         }
     }
 }

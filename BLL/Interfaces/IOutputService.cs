@@ -1,10 +1,6 @@
 ﻿using BLL.DTO;
-using System;
+using BLL.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace BLL.Interfaces
 {
     public interface IOutputService
@@ -14,5 +10,7 @@ namespace BLL.Interfaces
         IEnumerable<ItemDTO> SortBy(BLLSortCriteria sortParam);
         IEnumerable<ItemDTO> SortByDescending(BLLSortCriteria sortParam);
         IEnumerable<ItemDTO> Search(string request);
+        IEnumerable<ItemDTO> FilterByCategory(int categoryId);
+        IEnumerable<ItemDTO> FilterByCriteria(FilterCriteries filter);
     }
 }
