@@ -212,8 +212,12 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\StatisticController.cs" />
+
+    <Compile Include="Controllers\OutputController.cs" />
+
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -226,11 +230,19 @@
     <Compile Include="Models\CategoryView.cs" />
     <Compile Include="Models\IShoppingCartView.cs" />
     <Compile Include="Models\ItemCharacteristicView.cs" />
+    <Compile Include="Models\ItemsListViewModel.cs" />
     <Compile Include="Models\ItemView.cs" />
     <Compile Include="Models\OrderView.cs" />
+
     <Compile Include="Models\ShoppingCartLineView.cs" />
     <Compile Include="Models\ShoppingCartView.cs" />
     <Compile Include="Models\StatisticView.cs" />
+
+    <Compile Include="Models\PaginationParams.cs" />
+    <Compile Include="Models\PagingInfo.cs" />
+    <Compile Include="Models\SortCriteriaView.cs" />
+    <Compile Include="Models\WebApiFilterCriteries.cs" />
+
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

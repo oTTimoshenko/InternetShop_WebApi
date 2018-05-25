@@ -6,6 +6,7 @@ using AutoMapper;
 using BLL.DTO;
 using BLL.Entity;
 using BLL.Interfaces;
+using BLL.Models;
 using WebUI.Models;
 
 namespace WebUI.Infrastructure
@@ -18,6 +19,9 @@ namespace WebUI.Infrastructure
             CreateMap<ItemView, ItemDTO>().ReverseMap().MaxDepth(2);
             CreateMap<ItemCharacteristicView, ItemCharacteristicsDTO>().ReverseMap().MaxDepth(2);
             CreateMap<OrderView, OrderDTO>().ReverseMap().MaxDepth(2);
+
+            CreateMap<FilterCriteries, WebApiFilterCriteries>().ReverseMap();
+
             CreateMap<StateView, StateDTO>().ReverseMap();
             CreateMap<StatisticView, Statistic>().ReverseMap();
         }

@@ -13,7 +13,6 @@ namespace BLL.DTO
 
         public ItemCharacteristicsDTO ItemCharacteristic { get; set; }
 
-
         public int? CategoryId { get; set; }
         public CategoryDTO Category { get; set; }
 

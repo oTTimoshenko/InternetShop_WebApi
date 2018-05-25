@@ -31,12 +31,6 @@ namespace UoWandRepositories.Repositories
             return mapper.Map<IEnumerable<TInputEntity>>(_dbset.AsEnumerable<TDomainEntity>());
         }
 
-        /*public IEnumerable<TInputEntity> FindBy(System.Linq.Expressions.Expression<Func<TInputEntity, bool>> predicate)
-        {
-            IEnumerable<TInputEntity> query = _dbset.Where(predicate).AsEnumerable();
-            return query;
-        }*/
-
         public virtual void Add(TInputEntity entity)
         {
             var _entity = mapper.Map<TDomainEntity>(entity);
@@ -53,6 +47,7 @@ namespace UoWandRepositories.Repositories
         {
             var _entity = _dbset.Find(Id);
             _dbset.Remove(_entity);
+            var entity = mapper.Map<TInputEntity>(_entity);
         }
 
         public virtual void Edit(TInputEntity entity)

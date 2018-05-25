@@ -104,9 +104,10 @@ namespace WebUI.Controllers
 
         [HttpPut]
         [Route("api/adminPanel/characteristics/edit")]
-        public void UpdateItemCharacteristic(int id, string name)
+        public void UpdateItemCharacteristic([FromBody]ItemCharacteristicView itemCharacteristic)
         {
-
+            var _itemCharacteristic = mapper.Map<ItemCharacteristicsDTO>(itemCharacteristic);
+            adminService.UpdateItemCharacteristic(_itemCharacteristic);
         }
 
         [HttpDelete]

@@ -9,6 +9,7 @@ using UoWandRepositories.Entities;
 
 namespace Tests.Infrustructure
 {
+
     public class TestsMappingConfig : Profile
     {
         public TestsMappingConfig()
