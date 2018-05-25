@@ -16,22 +16,19 @@ namespace UoWandRepositories.UnitOfWork
 {
     public class ShopUnitOfWork : IShopUnitOfWork //UnitOfWork for predmet area
     {
-
         private IEFshopContext _dbContext;
         private IMapper _mapper;
-        
+
         private ICategoryRepository categoryRepository;
         private IItemCharacteristicRepository itemCharacteristicRepository;
         private IItemRepository itemRepository;
         private IOrderRepository orderRepository;
-
 
         public ShopUnitOfWork(string connectionString, IMapper mapper)
         {
             _dbContext = new EFshopContext(connectionString);
             _mapper = mapper;
         }
-
 
         public ICategoryRepository Categories
         {
@@ -42,7 +39,6 @@ namespace UoWandRepositories.UnitOfWork
                 return categoryRepository;
             }
         }
-
 
         public IItemCharacteristicRepository ItemCharacteristics
         {
