@@ -36,11 +36,19 @@ namespace BLL.Services
         //    db.Orders.Edit(order);
         //    db.Save();
         //}
-        public void UpdateOrder(OrderDTO order)
+        public bool UpdateOrder(OrderDTO order)
         {
-            var _order = mapper.Map<OrderUoW>(order);
-            db.Orders.Edit(_order);
-            db.Save();
+            try
+            {
+                var _order = mapper.Map<OrderUoW>(order);
+                db.Orders.Edit(_order);
+                db.Save();
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+            return true;
         }
         public OrderDTO GetOrder(int Id)
         {

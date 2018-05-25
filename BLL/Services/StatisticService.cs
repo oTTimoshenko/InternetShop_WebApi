@@ -24,16 +24,12 @@ namespace BLL.Services
 
         public IEnumerable<OrderDTO> getAllOrders()
         {
-            var result = db.Orders.GetAll();
-            var resM = mapper.Map<IEnumerable<OrderDTO>>(result);
-            return resM;
+            return mapper.Map<IEnumerable<OrderDTO>>(db.Orders.GetAll()); 
         }
 
         public IEnumerable<ItemDTO> getAllItems()
         {
-            var result = db.Items.GetAll();
-            var resM = mapper.Map<IEnumerable<ItemDTO>>(result);
-            return resM;
+            return mapper.Map<IEnumerable<ItemDTO>>(db.Items.GetAll());
         }
 
         public Statistic getOverallStats()

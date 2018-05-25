@@ -6,6 +6,7 @@ using UoWandRepositories.Interfaces;
 using BLL.Entity;
 using UoWandRepositories.Entities;
 using BLL.Interfaces;
+using System;
 
 namespace BLL.Services
 {
@@ -20,29 +21,52 @@ namespace BLL.Services
             _mapper = mapper;
         }
 
-        public void AddItem(ItemDTO item, int quantity, IShoppingCart _lineCollection)
+        public bool AddItem(ItemDTO item, int quantity, IShoppingCart _lineCollection)
         {
-            
-            if (item != null)
+            try
             {
-                _lineCollection.lines.Add(new ShoppingCartLine
+                if (item != null)
                 {
-                    
-                    Item = _mapper.Map<ItemDTO>(_db.Items.GetById(item.ItemId)),
-                    Quantity = quantity
-                });
+                    _lineCollection.lines.Add(new ShoppingCartLine
+                    {
+
+                        Item = _mapper.Map<ItemDTO>(_db.Items.GetById(item.ItemId)),
+                        Quantity = quantity
+                    });
+                }
             }
+            catch (Exception exc)
+            {
+                return false;
+            }
+            return true;
 
         }
 
-        public void RemoveItem(ItemDTO item, IShoppingCart _lineCollection)
+        public bool RemoveItem(ItemDTO item, IShoppingCart _lineCollection)
         {
-            _lineCollection.lines.RemoveAll(l => l.Item.ItemId == item.ItemId);
+            try
+            {
+                _lineCollection.lines.RemoveAll(l => l.Item.ItemId == item.ItemId);
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public void Clear(IShoppingCart _lineCollection)
+        public bool Clear(IShoppingCart _lineCollection)
         {
-            _lineCollection.lines.Clear();
+            try
+            {
+                _lineCollection.lines.Clear();
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+            return true;
         }
 
 

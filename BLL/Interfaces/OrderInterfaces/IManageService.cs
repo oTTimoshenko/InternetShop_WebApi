@@ -11,7 +11,7 @@ namespace BLL.Interfaces
     {
         //void ConfirmOrder(int id);
         //void DeclineOrder(int id);
-        void UpdateOrder(OrderDTO order);
+        bool UpdateOrder(OrderDTO order);
         OrderDTO GetOrder(int Id);
     }
 }
