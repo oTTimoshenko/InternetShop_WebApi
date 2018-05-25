@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,9 @@ namespace BLL.Interfaces
 {
     public interface IManageService
     {
-        void ConfirmOrder(int id);
-        void DeclineOrder(int id);
+        //void ConfirmOrder(int id);
+        //void DeclineOrder(int id);
+        void UpdateOrder(OrderDTO order);
+        OrderDTO GetOrder(int Id);
     }
 }

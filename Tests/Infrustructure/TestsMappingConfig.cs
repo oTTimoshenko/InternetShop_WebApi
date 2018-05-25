@@ -7,19 +7,17 @@ using AutoMapper;
 using BLL.DTO;
 using UoWandRepositories.Entities;
 
-namespace BLL.Infrastructure
+namespace Tests.Infrustructure
 {
-    public class BLLMappingConfig:Profile
+    public class TestsMappingConfig : Profile
     {
-        public BLLMappingConfig()
+        public TestsMappingConfig()
         {
             CreateMap<CategoryDTO, CategoryUoW>().ReverseMap().MaxDepth(2);
             CreateMap<ItemDTO, ItemUoW>().ReverseMap().MaxDepth(2);
             CreateMap<ItemCharacteristicsDTO, ItemCharacteristicUoW>().ReverseMap().MaxDepth(2);
             CreateMap<OrderDTO, OrderUoW>().ReverseMap().MaxDepth(2);
             CreateMap<StateDTO, StateUoW>().ReverseMap();
-            //CreateMap<IEnumerable<ItemDTO>, IEnumerable<ItemUoW>>().ReverseMap();
-            //CreateMap<IEnumerable<OrderDTO>, IEnumerable<OrderUoW>>().ReverseMap();
         }
     }
 }

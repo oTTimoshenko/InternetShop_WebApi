@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UoWandRepositories.Interfaces;
 using UoWandRepositories.Entities;
 using BLL.Interfaces;
+using BLL.DTO;
 
 namespace BLL.Services
 {
@@ -21,19 +22,29 @@ namespace BLL.Services
             this.mapper = mapper;
         }
 
-        public void ConfirmOrder(int id)
+        //public void ConfirmOrder(int id)
+        //{
+        //    var order = db.Orders.GetById(id);
+        //    order.State = StateUoW.Confirmed;
+        //    db.Orders.Edit(order);
+        //    db.Save();
+        //}
+        //public void DeclineOrder(int id)
+        //{
+        //    var order = db.Orders.GetById(id);
+        //    order.State = StateUoW.Declined;
+        //    db.Orders.Edit(order);
+        //    db.Save();
+        //}
+        public void UpdateOrder(OrderDTO order)
         {
-            var order = db.Orders.GetById(id);
-            order.State = StateUoW.Confirmed;
-            db.Orders.Edit(order);
+            var _order = mapper.Map<OrderUoW>(order);
+            db.Orders.Edit(_order);
             db.Save();
         }
-        public void DeclineOrder(int id)
+        public OrderDTO GetOrder(int Id)
         {
-            var order = db.Orders.GetById(id);
-            order.State = StateUoW.Declined;
-            db.Orders.Edit(order);
-            db.Save();
+            return mapper.Map<OrderDTO>(db.Orders.GetById(Id));
         }
     }
 }

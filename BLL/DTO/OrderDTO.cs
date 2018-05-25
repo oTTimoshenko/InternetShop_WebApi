@@ -8,7 +8,7 @@ namespace BLL.DTO
         public int OrderId { get; set; }
         public DateTime Time { get; set; }
         public double Price { get; set; }
-        public StateDTO State { get; set; } = StateDTO.In_process;
+        public StateDTO State { get; set; }
 
         public ICollection<ItemDTO> Items { get; set; }
 

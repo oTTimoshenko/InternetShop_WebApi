@@ -22,12 +22,13 @@ namespace BLL.Services
 
         public void AddItem(ItemDTO item, int quantity, IShoppingCart _lineCollection)
         {
-
+            
             if (item != null)
             {
                 _lineCollection.lines.Add(new ShoppingCartLine
                 {
-                    Item = item,
+                    
+                    Item = _mapper.Map<ItemDTO>(_db.Items.GetById(item.ItemId)),
                     Quantity = quantity
                 });
             }
@@ -58,6 +59,7 @@ namespace BLL.Services
             {
                 lines = _lineCollection.lines,
                 overallPrice = cartPrice
+
             };
 
             return cart;
@@ -74,7 +76,9 @@ namespace BLL.Services
             {
                 Items = items,
                 Time = System.DateTime.Now,
-                Price = cart.overallPrice
+                Price = cart.overallPrice,
+                State = StateDTO.In_process
+                
             };
             return order;
         }

@@ -60,7 +60,7 @@ namespace WebUI.Controllers
 
         [HttpPost]
         [Route("api/OrderPanel/addOrder")]
-        public OrderView MakeOrder([FromBody]ShoppingCartView order)
+        public OrderView MakeOrder()
         {
             //var _cart = _mapper.Map<ShoppingCart>(order);
             var _order =_user.MakeOrder(icart);

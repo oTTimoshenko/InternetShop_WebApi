@@ -58,7 +58,9 @@ namespace UoWandRepositories.Repositories
         public virtual void Edit(TInputEntity entity)
         {
             var _entity = mapper.Map<TDomainEntity>(entity);
+       //     _entities.Entry(_entity).State = EntityState.Detached;
             _entities.Entry(_entity).State = EntityState.Modified;
+
         }
     }
 }
