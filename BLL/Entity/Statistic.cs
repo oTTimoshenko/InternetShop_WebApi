@@ -9,7 +9,6 @@ namespace BLL.Entity
 {
     public class Statistic
     {
-        public ItemDTO hotItems { get; set; }
         public double totalItemsSold { get; set; }
         public double totalItems { get; set; }
         public double totalRevenue { get; set; }
