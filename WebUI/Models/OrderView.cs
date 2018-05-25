@@ -10,8 +10,7 @@ namespace WebUI.Models
         public int OrderId { get; set; }
         public DateTime Time { get; set; }
         public double Price { get; set; }
-        public int MyProperty { get; set; }
-        public ShipmentView Shipment { get; set; }
+ 
         public StateView State { get; set; }
 
         public ICollection<ItemView> Items { get; set; }
@@ -21,14 +20,6 @@ namespace WebUI.Models
             Items = new List<ItemView>();
         }
     }
-
-    public enum ShipmentView
-    {
-        UkrPost,
-        DHLPost,
-        Pickup
-    }
-
     public enum StateView
     {
         Confirmed,
