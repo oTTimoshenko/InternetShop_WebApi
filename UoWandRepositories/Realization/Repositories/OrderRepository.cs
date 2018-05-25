@@ -19,7 +19,9 @@ namespace UoWandRepositories.Repositories
 
         public OrderUoW GetById(int id)
         {
-            var entity = mapper.Map<OrderUoW>(_dbset.Include(x => x.Items).Where(x => x.OrderId == id).FirstOrDefault());
+            var entity = mapper.Map<OrderUoW>(_dbset.Where(x => x.OrderId == id).FirstOrDefault());
+           // var entity = mapper.Map<OrderUoW>(_dbset.Include(x => x.Items).Where(x => x.OrderId == id).FirstOrDefault());
+
             return entity;
         }
     }
