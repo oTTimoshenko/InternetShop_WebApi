@@ -33,6 +33,18 @@
     <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -54,22 +66,26 @@
     <Compile Include="DTO\ItemCharacteristicsDTO.cs" />
     <Compile Include="DTO\ItemDTO.cs" />
     <Compile Include="DTO\OrderDTO.cs" />
+    <Compile Include="Entity\Account\UserDTO.cs" />
     <Compile Include="Entity\ShoppingCart.cs" />
     <Compile Include="Entity\ShoppingCartLine.cs" />
     <Compile Include="Entity\Statistic.cs" />
     <Compile Include="Infrastructure\BLLMappingConfig.cs" />
     <Compile Include="Infrastructure\BBLNinjectModule.cs" />
+    <Compile Include="Infrastructure\Account\OperationDetailsBLL.cs" />
+    <Compile Include="Interfaces\IAccountService.cs" />
+    <Compile Include="Interfaces\IAccountServiceCreator.cs" />
     <Compile Include="Interfaces\IAdminService.cs" />
     <Compile Include="Interfaces\IStatisticService.cs" />
     <Compile Include="Interfaces\OrderInterfaces\IManageService.cs" />
     <Compile Include="Interfaces\IOutputService.cs" />
     <Compile Include="Interfaces\OrderInterfaces\IShoppingCart.cs" />
     <Compile Include="Interfaces\OrderInterfaces\IUserService.cs" />
-
     <Compile Include="Models\Enums\BLLSortCriteria.cs" />
     <Compile Include="Models\FilterCriteries.cs" />
-
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\AccountServiceCreator.cs" />
     <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\OrderServices\ManageService.cs" />
     <Compile Include="Services\OutputService.cs" />

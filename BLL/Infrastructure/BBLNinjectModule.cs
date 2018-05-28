@@ -22,6 +22,7 @@ namespace BLL.Infrastructure
             Bind<IShoppingCart>().To<ShoppingCart>().InSingletonScope();
             Bind<IStatisticService>().To<StatisticService>();
             Bind<IOutputService>().To<OutputService>();
+            Bind<IAccountService>().To<AccountService>();
         }
     }
 }

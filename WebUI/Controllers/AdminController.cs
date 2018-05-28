@@ -11,6 +11,7 @@ using BLL.Interfaces;
 
 namespace WebUI.Controllers
 {
+
     public class AdminController : ApiController
     {
         IAdminService adminService;
@@ -50,6 +51,7 @@ namespace WebUI.Controllers
 
         [HttpGet]
         [Route("api/adminPanel/categories/get/{id}")]
+        [Authorize(Roles = "admin")]
         public CategoryView GetCategory(int id)
         {
             var category = adminService.GetCategory(id);

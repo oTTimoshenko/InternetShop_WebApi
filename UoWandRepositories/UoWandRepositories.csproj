@@ -39,6 +39,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -65,12 +71,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Account\OparationDetailsUoW.cs" />
+    <Compile Include="Entities\Account\RoleUoW.cs" />
+    <Compile Include="Entities\Account\UserModelUoW.cs" />
+    <Compile Include="Entities\Account\UserProfileUoW.cs" />
+    <Compile Include="Entities\Account\UserUoW.cs" />
     <Compile Include="Entities\CategoryUoW.cs" />
     <Compile Include="Entities\ItemCharacteristicUoW.cs" />
     <Compile Include="Entities\ItemUoW.cs" />
     <Compile Include="Entities\OrderUoW.cs" />
+    <Compile Include="Identity\ShopRoleManager.cs" />
+    <Compile Include="Identity\ShopUserManager.cs" />
     <Compile Include="Infrastructure\UoWMappingConfig.cs" />
     <Compile Include="Infrastructure\UoWNinjectModule.cs" />
+    <Compile Include="Interfaces\Account\IAccountUnitOfWork.cs" />
+    <Compile Include="Interfaces\Account\IProfileManager.cs" />
     <Compile Include="Interfaces\ICategoryRepository.cs" />
     <Compile Include="Interfaces\IItemCharacteristicRepository.cs" />
     <Compile Include="Interfaces\IItemRepository.cs" />
@@ -78,11 +93,13 @@
     <Compile Include="Interfaces\IShopGenericRepository.cs" />
     <Compile Include="Interfaces\IShopUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Realization\Repositories\Account\ProfileManager.cs" />
     <Compile Include="Realization\Repositories\CategoryRepository.cs" />
     <Compile Include="Realization\Repositories\ItemCharacteristicRepository.cs" />
     <Compile Include="Realization\Repositories\ItemRepository.cs" />
     <Compile Include="Realization\Repositories\OrderRepository.cs" />
     <Compile Include="Realization\Repositories\ShopGenericRepository.cs" />
+    <Compile Include="Realization\UnitOfWork\AccountUnitOfWork.cs" />
     <Compile Include="Realization\UnitOfWork\ShopUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>

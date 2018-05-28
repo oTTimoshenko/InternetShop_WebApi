@@ -45,7 +45,7 @@ namespace WebUI.App_Start
         {
             WebApiNinjectModule webApiNinjectModule = new WebApiNinjectModule();
             BBLNinjectModule bbLNinjectModule = new BBLNinjectModule();
-            UoWNinjectModule uoWNinjectModule = new UoWNinjectModule("InternetShopConnection");
+            UoWNinjectModule uoWNinjectModule = new UoWNinjectModule("InternetShopConnection", "AccountConnection");
             AutoMapperNinjectModule autoMapperNinjectModule = new AutoMapperNinjectModule();
             
             INinjectModule[] modules = new INinjectModule[] { webApiNinjectModule, bbLNinjectModule, uoWNinjectModule, autoMapperNinjectModule };

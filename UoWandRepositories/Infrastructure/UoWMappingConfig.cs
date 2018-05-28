@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Entities.Account;
 using UoWandRepositories.Entities;
+using UoWandRepositories.Entities.Account;
 
 namespace UoWandRepositories.Infrastructure
 {
@@ -18,6 +20,10 @@ namespace UoWandRepositories.Infrastructure
             CreateMap<Item, ItemUoW>().ReverseMap().MaxDepth(2);
             CreateMap<Order, OrderUoW>().ReverseMap().MaxDepth(2);
             CreateMap<State, StateUoW>().ReverseMap();
+
+            CreateMap<ShopUser, UserUoW>().ReverseMap().MaxDepth(2);
+            CreateMap<ShopRole, RoleUoW>().ReverseMap().MaxDepth(2);
+            CreateMap<UserProfile, UserProfileUoW>().ReverseMap().MaxDepth(2);
         }
     }
 }
