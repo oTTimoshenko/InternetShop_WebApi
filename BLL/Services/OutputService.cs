@@ -22,6 +22,16 @@ namespace BLL.Services
             this.mapper = mapper;
         }
 
+        public ItemCharacteristicsDTO GetItemCharacteristics(int Id)
+        {
+            return mapper.Map<ItemCharacteristicsDTO>(db.ItemCharacteristics.GetById(Id));
+        }
+
+        public ItemDTO GetItem(int Id)
+        {
+            return mapper.Map<ItemDTO>(db.Items.GetById(Id));
+        }
+
         public IEnumerable<ItemDTO> GetAllItems()
         {
             return mapper.Map<IEnumerable<ItemDTO>>(db.Items.GetAll());

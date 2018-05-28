@@ -12,6 +12,7 @@ using WebUI.Models;
 
 namespace WebUI.Controllers
 {
+    [Authorize]
     public class UserController : ApiController
     {
         IUserService _user;
@@ -33,7 +34,6 @@ namespace WebUI.Controllers
         public void AddItem([FromBody]ItemView item, int quantity)
         {
             var _item = _mapper.Map<ItemDTO>(item);
-            //IShoppingCart cartView = _mapper.Map<ShoppingCart>(_cartView);
             
             _user.AddItem(_item, quantity, icart);
         }
@@ -43,7 +43,6 @@ namespace WebUI.Controllers
         public void RemoveItem([FromBody]ItemView item)
         {
             var _item = _mapper.Map<ItemDTO>(item);
-            //IShoppingCart cartView = _mapper.Map<ShoppingCart>(_cartView);
             _user.RemoveItem(_item, icart);
         }
 
@@ -51,8 +50,6 @@ namespace WebUI.Controllers
         [Route("api/CartPanel/composeOrder")]
         public IShoppingCart ComposeCart()
         {
-            //IShoppingCart cartView = _mapper.Map<ShoppingCart>(_cartView);
-            //cartView.lines = _mapper.Map<List<ShoppingCartLine>>(_cartView.lines);
             var cart = _user.ComposeCart(icart);
 
             return cart;
@@ -62,11 +59,9 @@ namespace WebUI.Controllers
         [Route("api/OrderPanel/addOrder")]
         public OrderView MakeOrder()
         {
-            //var _cart = _mapper.Map<ShoppingCart>(order);
             var _order =_user.MakeOrder(icart);
             OrderView _ordermap = _mapper.Map<OrderView>(_order);
             return _ordermap;
         }
-
     }
 }

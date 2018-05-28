@@ -11,6 +11,7 @@ using WebUI.Models;
 
 namespace WebUI.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class StatisticController : ApiController
     {
         IStatisticService _stat;

@@ -17,7 +17,6 @@ namespace WebUI.Controllers
         IOutputService outputService;
         IMapper mapper;
 
-
         public OutputController(IOutputService _outputService, IMapper mapper)
         {
             outputService = _outputService;
@@ -25,6 +24,24 @@ namespace WebUI.Controllers
         }
         public OutputController()
         { }
+
+        [HttpGet]
+        [Route("api/output/items/get/{id}")]
+        public ItemView GetItem(int id)
+        {
+            var item = outputService.GetItem(id);
+            ItemView _item = mapper.Map<ItemView>(item);
+            return _item;
+        }
+
+        [HttpGet]
+        [Route("api/output/characteristics/get/{id}")]
+        public ItemCharacteristicView GetItemCharacteristic(int id)
+        {
+            var itemCharacteristic = outputService.GetItemCharacteristics(id);
+            ItemCharacteristicView _itemCharacteristic = mapper.Map<ItemCharacteristicView>(itemCharacteristic);
+            return _itemCharacteristic;
+        }
 
         [HttpGet]
         [Route("api/output/pagination")]

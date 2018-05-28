@@ -42,7 +42,7 @@ namespace WebUI.Controllers
                 ClaimsIdentity claim =  AccountService.Authenticate(userDto);
                 if (claim == null)
                 {
-                    return "Неверный логин или пароль.";
+                    return "Wrong login or password.";
                 }
                 else
                 {
@@ -52,13 +52,14 @@ namespace WebUI.Controllers
                         IsPersistent = true
                     }, claim);
                 }
-                return "Вход выполнен успешно.";
+                return "Log in success.";
             }
             return null;
         }
 
         [HttpPost]
         [Route("api/Account/Logout")]
+        
         public void Logout()
         {
             AuthenticationManager.SignOut();
@@ -91,13 +92,13 @@ namespace WebUI.Controllers
         {
              AccountService.SetInitialData(new UserDTO
             {
-                Email = "somemail@mail.ru",
-                UserName = "somemail@mail.ru",
-                Password = "ad46D_ewr3",
-                Name = "Семен Семенович Горбунков",
-                Address = "ул. Спортивная, д.30, кв.75",
+                Email = "antonsuhorada@mail.ru",
+                UserName = "antonsuhorada@mail.ru",
+                Password = "123456",
+                Name = "Suhorada Anton",
+                Address = "Nezhinskaya 29D, 713b",
                 Role = "admin",
-            }, new List<string> { "user", "admin" });
+            }, new List<string> { "user", "admin", "manager" });
         }
     }
 }

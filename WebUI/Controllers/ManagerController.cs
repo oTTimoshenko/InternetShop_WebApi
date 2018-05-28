@@ -11,6 +11,7 @@ using WebUI.Models;
 
 namespace WebUI.Controllers
 {
+    [Authorize(Roles = "manager")]
     public class ManagerController : ApiController
     {
         IManageService _manage;
@@ -23,18 +24,6 @@ namespace WebUI.Controllers
         }
         public ManagerController() { }
 
-        //[HttpPut]
-        //[Route("api/ManagerPanel/acceptOrder/{id}")]
-        //public void ConfirmOrder(int id)
-        //{
-        //    _manage.ConfirmOrder(id);
-        //}
-        //[HttpPut]
-        //[Route("api/ManagerPanel/declineOrder/{id}")]
-        //public void DeclineOrder(int id)
-        //{
-        //    _manage.DeclineOrder(id);
-        //}
         [HttpPut]
         [Route("api/ManagerPanel/orders/edit")]
         public void UpdateOrder([FromBody]OrderView order)

@@ -5,6 +5,9 @@ namespace BLL.Interfaces
 {
     public interface IOutputService
     {
+        ItemCharacteristicsDTO GetItemCharacteristics(int Id);
+        ItemDTO GetItem(int Id);
+
         IEnumerable<ItemDTO> GetAllItems();
         IEnumerable<ItemDTO> GetItemsWithPagination(int page, int pageSize);
         IEnumerable<ItemDTO> SortBy(BLLSortCriteria sortParam);

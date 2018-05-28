@@ -11,12 +11,11 @@ using BLL.Interfaces;
 
 namespace WebUI.Controllers
 {
-
+    [Authorize(Roles = "admin")]
     public class AdminController : ApiController
     {
         IAdminService adminService;
         IMapper mapper;
-
 
         public AdminController(IAdminService _adminService, IMapper mapper)
         {
@@ -51,15 +50,12 @@ namespace WebUI.Controllers
 
         [HttpGet]
         [Route("api/adminPanel/categories/get/{id}")]
-        [Authorize(Roles = "admin")]
         public CategoryView GetCategory(int id)
         {
             var category = adminService.GetCategory(id);
             CategoryView _category = mapper.Map<CategoryView>(category);
             return _category;
         }
-
-
 
         [HttpPost]
         [Route("api/adminPanel/items/add")]
@@ -71,6 +67,7 @@ namespace WebUI.Controllers
 
         [HttpPut]
         [Route("api/adminPanel/items/edit")]
+        [Authorize(Roles = "manager")]
         public void UpdateItem([FromBody]ItemView item)
         {
             var _item = mapper.Map<ItemDTO>(item);
@@ -92,8 +89,6 @@ namespace WebUI.Controllers
             ItemView _item = mapper.Map<ItemView>(item);
             return _item;
         }
-
-
 
 
         [HttpPost]

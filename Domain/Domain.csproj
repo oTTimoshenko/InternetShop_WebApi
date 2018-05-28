@@ -57,10 +57,10 @@
     <Compile Include="Context\EFshopContext.cs" />
     <Compile Include="Entities\Account\ShopRole.cs" />
     <Compile Include="Entities\Account\UserProfile.cs" />
-    <Compile Include="Entities\Category.cs" />
-    <Compile Include="Entities\Item.cs" />
-    <Compile Include="Entities\ItemCharacteristic.cs" />
-    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\Shop\Category.cs" />
+    <Compile Include="Entities\Shop\Item.cs" />
+    <Compile Include="Entities\Shop\ItemCharacteristic.cs" />
+    <Compile Include="Entities\Shop\Order.cs" />
     <Compile Include="Entities\Account\ShopUser.cs" />
     <Compile Include="Interfaces\IEFshopContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

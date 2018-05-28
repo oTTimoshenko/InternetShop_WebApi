@@ -112,12 +112,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrustructure\TestsMappingConfig.cs" />
-    <Compile Include="ManagerServiceTests.cs" />
+    <Compile Include="Tests\ManagerServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AdminServiceTests.cs" />
-    <Compile Include="OutputServiceTests.cs" />
-    <Compile Include="StatisticServiceTests.cs" />
-    <Compile Include="UserServiceTests.cs" />
+    <Compile Include="Tests\AdminServiceTests.cs" />
+    <Compile Include="Tests\OutputServiceTests.cs" />
+    <Compile Include="Tests\StatisticServiceTests.cs" />
+    <Compile Include="Tests\UserServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
