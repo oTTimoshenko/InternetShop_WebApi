@@ -33,7 +33,7 @@ namespace WebUI.Controllers
 
         [HttpGet]
         [Route("api/Account/Login")]
-        public string Login([FromUri]LoginModel model)
+        public IHttpActionResult Login([FromUri]LoginModel model)
         {
             SetInitialData();
             if (ModelState.IsValid)
@@ -42,7 +42,7 @@ namespace WebUI.Controllers
                 ClaimsIdentity claim =  AccountService.Authenticate(userDto);
                 if (claim == null)
                 {
-                    return "Wrong login or password.";
+                    return Ok("Wrong login or password.");
                 }
                 else
                 {
@@ -52,22 +52,23 @@ namespace WebUI.Controllers
                         IsPersistent = true
                     }, claim);
                 }
-                return "Log in success.";
+                return Ok("Log in success.");
             }
-            return null;
+            return BadRequest();
         }
 
         [HttpPost]
         [Route("api/Account/Logout")]
         
-        public void Logout()
+        public IHttpActionResult Logout()
         {
             AuthenticationManager.SignOut();
+            return Ok();
         }
 
         [HttpGet]
         [Route("api/Account/Register")]
-        public OperationDetailsBLL Register([FromUri]RegistrationModel model)
+        public IHttpActionResult Register([FromUri]RegistrationModel model)
         {
             SetInitialData();
             OperationDetailsBLL operationDetails;
@@ -83,22 +84,32 @@ namespace WebUI.Controllers
                     Role = "user"
                 };
                 operationDetails = AccountService.Create(userDto);
-                return operationDetails;
+                return Ok(operationDetails);
             }
-            return null;
+            return BadRequest();
         }
 
         private void SetInitialData()
         {
              AccountService.SetInitialData(new UserDTO
-            {
+             {
                 Email = "antonsuhorada@mail.ru",
                 UserName = "antonsuhorada@mail.ru",
                 Password = "123456",
                 Name = "Suhorada Anton",
                 Address = "Nezhinskaya 29D, 713b",
                 Role = "admin",
-            }, new List<string> { "user", "admin", "manager" });
+             }, new List<string> { "user", "admin", "manager" });
+
+            AccountService.SetInitialData(new UserDTO
+            {
+                Email = "olexandrtimoshenko@mail.ru",
+                UserName = "olexandrtimoshenko@mail.ru",
+                Password = "123456",
+                Name = "Timoshenko Olexandr",
+                Address = "Nezhinskaya 29D, 713b",
+                Role = "manager",
+            }, new List<string> { "user", "admin", "manager"});
         }
     }
 }

@@ -9,6 +9,7 @@ namespace WebUI.Models
     public class RegistrationModel
     {
         [Required]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required]
         [DataType(DataType.Password)]

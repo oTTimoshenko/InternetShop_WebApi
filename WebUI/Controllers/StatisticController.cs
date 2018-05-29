@@ -26,11 +26,14 @@ namespace WebUI.Controllers
 
         [HttpGet]
         [Route("api/Statisticpanel/getStats")]
-        public StatisticView getStats()
+        public IHttpActionResult getStats()
         { 
             var stat = _stat.getOverallStats();
+            if (stat == null)
+                return NotFound();
+
             var statM = _mapper.Map<StatisticView>(stat);
-            return statM;
+            return Ok(statM);
         }
     }
 }

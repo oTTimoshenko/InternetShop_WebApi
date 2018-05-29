@@ -26,19 +26,33 @@ namespace WebUI.Controllers
 
         [HttpPut]
         [Route("api/ManagerPanel/orders/edit")]
-        public void UpdateOrder([FromBody]OrderView order)
+        public IHttpActionResult UpdateOrder([FromBody]OrderView order)
         {
-            var _order = _mapper.Map<OrderDTO>(order);
-            _manage.UpdateOrder(_order);
+            if (ModelState.IsValid)
+            {
+                var _order = _mapper.Map<OrderDTO>(order);
+                bool result = _manage.UpdateOrder(_order);
+
+                if (result)
+                    return Ok();
+            }
+            else
+                return BadRequest(ModelState);
+
+            return BadRequest();
         }
 
         [HttpGet]
         [Route("api/ManagerPanel/orders/get/{id}")]
-        public OrderView GetOrder(int id)
+        public IHttpActionResult GetOrder(int id)
         {
             var order = _manage.GetOrder(id);
-            OrderView _order = _mapper.Map<OrderView>(order);
-            return _order;
+            if (order != null)
+            {
+                OrderView _order = _mapper.Map<OrderView>(order);
+                return Ok(_order);
+            }
+            return NotFound();
         }
     }
 }

@@ -31,37 +31,55 @@ namespace WebUI.Controllers
 
         [HttpPost]
         [Route("api/CartPanel/addItem")]
-        public void AddItem([FromBody]ItemView item, int quantity)
+        public IHttpActionResult AddItem([FromBody]ItemView item, int quantity)
         {
-            var _item = _mapper.Map<ItemDTO>(item);
-            
-            _user.AddItem(_item, quantity, icart);
+            if (ModelState.IsValid)
+            {
+                var _item = _mapper.Map<ItemDTO>(item);
+                bool result = _user.AddItem(_item, quantity, icart);
+
+                if (result)
+                    return Ok();
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+            return BadRequest();
         }
 
         [HttpDelete]
         [Route("api/CartPanel/removeItem")]
-        public void RemoveItem([FromBody]ItemView item)
+        public IHttpActionResult RemoveItem([FromBody]ItemView item)
         {
             var _item = _mapper.Map<ItemDTO>(item);
-            _user.RemoveItem(_item, icart);
+            bool result = _user.RemoveItem(_item, icart);
+            if (result)
+                return Ok();
+            return BadRequest();
         }
 
         [HttpPut]
         [Route("api/CartPanel/composeOrder")]
-        public IShoppingCart ComposeCart()
+        public IHttpActionResult ComposeCart()
         {
             var cart = _user.ComposeCart(icart);
+            if (cart == null)
+                return NotFound();
 
-            return cart;
+            return Ok(cart);
         }
 
         [HttpPost]
         [Route("api/OrderPanel/addOrder")]
-        public OrderView MakeOrder()
+        public IHttpActionResult MakeOrder()
         {
             var _order =_user.MakeOrder(icart);
+            if (_order == null)
+                return NotFound();
+
             OrderView _ordermap = _mapper.Map<OrderView>(_order);
-            return _ordermap;
+            return Ok(_ordermap);
         }
     }
 }
