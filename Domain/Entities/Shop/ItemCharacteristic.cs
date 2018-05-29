@@ -13,9 +13,17 @@ namespace Domain.Entities
         [Key]
         [ForeignKey("Item")]
         public int ItemCharacteristicId { get; set; }
+
+        [Required]
         public double DisplayDiagonal { get; set; }
+
+        [Required]
         public int RAM { get; set; }
+
+        [Required]
         public int Memory { get; set; } // Memory of item
+
+        [Required]
         public double Camera { get; set; }
 
         public Item Item { get; set; }

@@ -27,100 +27,195 @@ namespace WebUI.Controllers
 
         [HttpPost]
         [Route("api/adminPanel/categories/add")]
-        public void AddCategory([FromBody]CategoryView category)
+        public IHttpActionResult AddCategory([FromBody]CategoryView category)
         {
-            var _category = mapper.Map<CategoryDTO>(category);
-            adminService.AddCategory(_category);
+            if (ModelState.IsValid)
+            {
+                var _category = mapper.Map<CategoryDTO>(category);
+                bool result = adminService.AddCategory(_category);
+
+                if (result)
+                    return Ok();
+            }
+            else
+                return BadRequest(ModelState);
+
+            return BadRequest();
         }
 
         [HttpPut]
         [Route("api/adminPanel/categories/edit")]
-        public void UpdateCategory([FromBody]CategoryView category)
+        public IHttpActionResult UpdateCategory([FromBody]CategoryView category)
         {
-            var _category = mapper.Map<CategoryDTO>(category);
-            adminService.UpdateCategory(_category);
+            if (ModelState.IsValid)
+            {
+                var _category = mapper.Map<CategoryDTO>(category);
+                bool result = adminService.UpdateCategory(_category);
+
+                if (result)
+                    return Ok();
+            }
+            else
+                return BadRequest(ModelState);
+
+            return BadRequest();
         }
 
         [HttpDelete]
         [Route("api/adminPanel/categories/delete/{id}")]
-        public void DeleteCategory(int id)
+        public IHttpActionResult DeleteCategory(int id)
         {
-            adminService.RemoveCategory(id);
+            bool result = adminService.RemoveCategory(id);
+
+            if (result)
+                return Ok();
+
+            return BadRequest();
         }
 
         [HttpGet]
         [Route("api/adminPanel/categories/get/{id}")]
-        public CategoryView GetCategory(int id)
+        public IHttpActionResult GetCategory(int id)
         {
             var category = adminService.GetCategory(id);
-            CategoryView _category = mapper.Map<CategoryView>(category);
-            return _category;
+
+            if (category != null)
+            {
+                CategoryView _category = mapper.Map<CategoryView>(category);
+                return Ok(_category);
+            }
+
+            return NotFound();
         }
+
+
 
         [HttpPost]
         [Route("api/adminPanel/items/add")]
-        public void AddItem([FromBody]ItemView itemView)
+        public IHttpActionResult AddItem([FromBody]ItemView itemView)
         {
-            var _item = mapper.Map<ItemDTO>(itemView);
-            adminService.AddItem(_item);
+            if (ModelState.IsValid)
+            {
+                var _item = mapper.Map<ItemDTO>(itemView);
+                bool result = adminService.AddItem(_item);
+
+                if (result)
+                    return Ok();
+            }
+            else
+                return BadRequest(ModelState);
+
+            return BadRequest();
         }
 
         [HttpPut]
         [Route("api/adminPanel/items/edit")]
         [Authorize(Roles = "manager")]
-        public void UpdateItem([FromBody]ItemView item)
+        public IHttpActionResult UpdateItem([FromBody]ItemView item)
         {
-            var _item = mapper.Map<ItemDTO>(item);
-            adminService.UpdateItem(_item);
+            if (ModelState.IsValid)
+            {
+                var _item = mapper.Map<ItemDTO>(item);
+                bool result = adminService.UpdateItem(_item);
+
+                if (result)
+                    return Ok();
+            }
+            else
+                return BadRequest(ModelState);
+
+            return BadRequest();
         }
-    
+
         [HttpDelete]
         [Route("api/adminPanel/items/delete/{id}")]
-        public void DeleteItem(int id)
+        public IHttpActionResult DeleteItem(int id)
         {
-            adminService.RemoveItem(id);
+            bool result = adminService.RemoveItem(id);
+
+            if (result)
+                return Ok();
+
+            return BadRequest();
         }
 
         [HttpGet]
         [Route("api/adminPanel/items/get/{id}")]
-        public ItemView GetItem(int id)
+        public IHttpActionResult GetItem(int id)
         {
             var item = adminService.GetItem(id);
-            ItemView _item = mapper.Map<ItemView>(item);
-            return _item;
+
+            if (item != null)
+            {
+                ItemView _item = mapper.Map<ItemView>(item);
+                return Ok(_item);
+            }
+
+            return NotFound();
         }
+
 
 
         [HttpPost]
         [Route("api/adminPanel/characteristics/add")]
-        public void AddItemCharacteristic([FromBody]ItemCharacteristicView itemCharacteristic)
+        public IHttpActionResult AddItemCharacteristic([FromBody]ItemCharacteristicView itemCharacteristic)
         {
-            var _itemCharacteristic = mapper.Map<ItemCharacteristicsDTO>(itemCharacteristic);
-            adminService.AddItemCharacteristic(_itemCharacteristic);
+            if (ModelState.IsValid)
+            {
+                var _itemCharacteristic = mapper.Map<ItemCharacteristicsDTO>(itemCharacteristic);
+                bool result = adminService.AddItemCharacteristic(_itemCharacteristic);
+
+                if (result)
+                    return Ok();
+            }
+            else
+                return BadRequest(ModelState);
+
+            return BadRequest();
         }
 
         [HttpPut]
         [Route("api/adminPanel/characteristics/edit")]
-        public void UpdateItemCharacteristic([FromBody]ItemCharacteristicView itemCharacteristic)
+        public IHttpActionResult UpdateItemCharacteristic([FromBody]ItemCharacteristicView itemCharacteristic)
         {
-            var _itemCharacteristic = mapper.Map<ItemCharacteristicsDTO>(itemCharacteristic);
-            adminService.UpdateItemCharacteristic(_itemCharacteristic);
+            if (ModelState.IsValid)
+            {
+                var _itemCharacteristic = mapper.Map<ItemCharacteristicsDTO>(itemCharacteristic);
+                bool result = adminService.UpdateItemCharacteristic(_itemCharacteristic);
+
+                if (result)
+                    return Ok();
+            }
+            else
+                return BadRequest(ModelState);
+
+            return BadRequest();
         }
 
         [HttpDelete]
         [Route("api/adminPanel/characteristics/delete/{id}")]
-        public void DeleteItemCharacteristic(int id)
+        public IHttpActionResult DeleteItemCharacteristic(int id)
         {
-            adminService.RemoveItemCharacteristic(id);
+            bool result = adminService.RemoveItemCharacteristic(id);
+
+            if (result)
+                return Ok();
+
+            return BadRequest();
         }
 
         [HttpGet]
         [Route("api/adminPanel/characteristics/get/{id}")]
-        public ItemCharacteristicView GetItemCharacteristic(int id)
+        public IHttpActionResult GetItemCharacteristic(int id)
         {
             var itemCharacteristic = adminService.GetItemCharacteristics(id);
-            ItemCharacteristicView _itemCharacteristic = mapper.Map<ItemCharacteristicView>(itemCharacteristic);
-            return _itemCharacteristic;
+            if (itemCharacteristic != null)
+            {
+                ItemCharacteristicView _itemCharacteristic = mapper.Map<ItemCharacteristicView>(itemCharacteristic);
+                return Ok(_itemCharacteristic);
+            }
+
+            return NotFound();
         }
     }
 }

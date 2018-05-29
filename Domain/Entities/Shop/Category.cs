@@ -12,6 +12,8 @@ namespace Domain.Entities
     {
         [Key]
         public int CategoryId { get; set; }
+        [Required]
+        [StringLength(30, MinimumLength = 5, ErrorMessage = "Недопустимая длина названия категории")]
         public string CategoryName { get; set; }
 
         public ICollection<Item> Items { get; set; }

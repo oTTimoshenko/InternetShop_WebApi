@@ -27,102 +27,143 @@ namespace WebUI.Controllers
 
         [HttpGet]
         [Route("api/output/items/get/{id}")]
-        public ItemView GetItem(int id)
+        public IHttpActionResult GetItem(int id)
         {
             var item = outputService.GetItem(id);
-            ItemView _item = mapper.Map<ItemView>(item);
-            return _item;
+            if (item != null)
+            {
+                ItemView _item = mapper.Map<ItemView>(item);
+                return Ok(_item);
+            }
+
+            return NotFound();
         }
 
         [HttpGet]
         [Route("api/output/characteristics/get/{id}")]
-        public ItemCharacteristicView GetItemCharacteristic(int id)
+        public IHttpActionResult GetItemCharacteristic(int id)
         {
             var itemCharacteristic = outputService.GetItemCharacteristics(id);
-            ItemCharacteristicView _itemCharacteristic = mapper.Map<ItemCharacteristicView>(itemCharacteristic);
-            return _itemCharacteristic;
+            if (itemCharacteristic != null)
+            {
+                ItemCharacteristicView _itemCharacteristic = mapper.Map<ItemCharacteristicView>(itemCharacteristic);
+                return Ok(_itemCharacteristic);
+            }
+
+            return NotFound();
         }
 
         [HttpGet]
         [Route("api/output/pagination")]
-        public ItemsListViewModel PagingItemsList([FromUri]PaginationParams parametrs)
+        public IHttpActionResult PagingItemsList([FromUri]PaginationParams parametrs)
         {
-            int page = parametrs.CurrentPage;
-            int pageSize = parametrs.PageSize;
-
-            var items = outputService.GetItemsWithPagination(page, pageSize);
-
-            ItemsListViewModel model = new ItemsListViewModel()
+            if (ModelState.IsValid)
             {
-                Items = mapper.Map<IEnumerable<ItemView>>(items),
-                PagingInfo = new PagingInfo()
-                {
-                    CurrentPage = page,
-                    ItemsPerPage = pageSize,
-                    TotalItems = outputService.GetAllItems().Count()
-                }
-            };
+                int page = parametrs.CurrentPage;
+                int pageSize = parametrs.PageSize;
 
-            return model;
+                var items = outputService.GetItemsWithPagination(page, pageSize);
+
+                if (items.Count() == 0)
+                    return NotFound();
+
+                ItemsListViewModel model = new ItemsListViewModel()
+                {
+                    Items = mapper.Map<IEnumerable<ItemView>>(items),
+                    PagingInfo = new PagingInfo()
+                    {
+                        CurrentPage = page,
+                        ItemsPerPage = pageSize,
+                        TotalItems = outputService.GetAllItems().Count()
+                    }
+                };
+
+                return Ok(model);
+            }
+
+            return BadRequest(ModelState);
         }
 
         [HttpGet]
         [Route("api/output/all_items")]
-        public IEnumerable<ItemView> GetAllItems()
+        public IHttpActionResult GetAllItems()
         {
             var items = outputService.GetAllItems();
-            return mapper.Map<IEnumerable<ItemView>>(items);
+
+            if (items.Count() == 0)
+                return NotFound();
+
+            var _items = mapper.Map<IEnumerable<ItemView>>(items);
+
+            return Ok(_items);
         }
 
         [HttpGet]
         [Route("api/output/search")]
-        public IEnumerable<ItemView> Search([FromUri]string request)
+        public IHttpActionResult Search([FromUri]string request)
         {
             var searchItems = outputService.Search(request);
 
-            return mapper.Map<IEnumerable<ItemView>>(searchItems);
+            if (searchItems.Count() == 0)
+                return NotFound();
+
+            var _searchItems = mapper.Map<IEnumerable<ItemView>>(searchItems);
+
+            return Ok(_searchItems);
         }
 
         [HttpGet]
         [Route("api/output/sort_by/{sortCriteria}")]
-        public IEnumerable<ItemView> SortBy(SortCriteriaView sortCriteria = SortCriteriaView.NAME)
+        public IHttpActionResult SortBy(SortCriteriaView sortCriteria = SortCriteriaView.NAME)
         {
             var criteria = mapper.Map<BLLSortCriteria>(sortCriteria);
             var sorted_items = mapper.Map<IEnumerable<ItemView>>(outputService.SortBy(criteria));
 
-            return sorted_items;
+            if (sorted_items.Count() == 0)
+                return BadRequest();
+
+            return Ok(sorted_items);
         }
 
         [HttpGet]
         [Route("api/output/sort_by_descending/{sortCriteria}")]
-        public IEnumerable<ItemView> SortByDescending(SortCriteriaView sortCriteria = SortCriteriaView.NAME)
+        public IHttpActionResult SortByDescending(SortCriteriaView sortCriteria = SortCriteriaView.NAME)
         {
             var criteria = mapper.Map<BLLSortCriteria>(sortCriteria);
             var sorted_items = mapper.Map<IEnumerable<ItemView>>(outputService.SortByDescending(criteria));
 
-            return sorted_items;
+            if (sorted_items.Count() == 0)
+                return BadRequest();
+
+            return Ok(sorted_items);
         }
 
         [HttpGet]
         [Route("api/output/filter_by_criteries")]
-        public IEnumerable<ItemView> FilterByCriteries([FromUri]WebApiFilterCriteries criteries)
+        public IHttpActionResult FilterByCriteries([FromUri]WebApiFilterCriteries criteries)
         {
             var _criteries = mapper.Map<FilterCriteries>(criteries);
 
             var items = outputService.FilterByCriteria(_criteries);
             var filter_items = mapper.Map<IEnumerable<ItemView>>(items);
 
-            return filter_items;
+            if (filter_items.Count() == 0)
+                return BadRequest();
+
+            return Ok(filter_items);
         }
 
         [HttpGet]
         [Route("api/output/filter_by_category/{id}")]
-        public IEnumerable<ItemView> FilterByCategory(int id)
+        public IHttpActionResult FilterByCategory(int id)
         {
             var items = outputService.FilterByCategory(id);
             var filter_items = mapper.Map<IEnumerable<ItemView>>(items);
 
-            return filter_items;
+            if (filter_items.Count() == 0)
+                return BadRequest();
+
+            return Ok(filter_items);
         }
     }
 }

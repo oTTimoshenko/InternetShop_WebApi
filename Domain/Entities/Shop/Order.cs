@@ -12,8 +12,14 @@ namespace Domain.Entities
     {
         [Key]
         public int OrderId { get; set; }
+
+        [Required]
         public DateTime Time { get; set; } // Time of order
+
+        [Required]
         public double Price { get; set; } // Total order price
+
+        [Required]
         public State State { get; set; } // state of order
 
         public ICollection<Item> Items { get; set; }
