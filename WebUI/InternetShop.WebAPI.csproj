@@ -270,13 +270,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj">
+    <ProjectReference Include="..\BLL\InternetShop.BLL.csproj">
       <Project>{32dd7c4f-3b34-46ca-8c60-4dd0a902422b}</Project>
-      <Name>BLL</Name>
+      <Name>InternetShop.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UoWandRepositories\UoWandRepositories.csproj">
+    <ProjectReference Include="..\UoWandRepositories\InternetShop.UoWandRepositories.csproj">
       <Project>{e1611cb0-0771-4247-bb24-1b64dc14ffff}</Project>
-      <Name>UoWandRepositories</Name>
+      <Name>InternetShop.UoWandRepositories</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

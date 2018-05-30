@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E1611CB0-0771-4247-BB24-1B64DC14FFFF}</ProjectGuid>
+    <ProjectGuid>{32DD7C4F-3B34-46CA-8C60-4DD0A902422B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UoWandRepositories</RootNamespace>
-    <AssemblyName>UoWandRepositories</AssemblyName>
+    <RootNamespace>BLL</RootNamespace>
+    <AssemblyName>BLL</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,19 +34,16 @@
       <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
@@ -57,12 +54,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,46 +62,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Account\OparationDetailsUoW.cs" />
-    <Compile Include="Entities\Account\RoleUoW.cs" />
-    <Compile Include="Entities\Account\UserModelUoW.cs" />
-    <Compile Include="Entities\Account\UserProfileUoW.cs" />
-    <Compile Include="Entities\Account\UserUoW.cs" />
-    <Compile Include="Entities\Shop\CategoryUoW.cs" />
-    <Compile Include="Entities\Shop\ItemCharacteristicUoW.cs" />
-    <Compile Include="Entities\Shop\ItemUoW.cs" />
-    <Compile Include="Entities\Shop\OrderUoW.cs" />
-    <Compile Include="Identity\ShopRoleManager.cs" />
-    <Compile Include="Identity\ShopUserManager.cs" />
-    <Compile Include="Infrastructure\UoWMappingConfig.cs" />
-    <Compile Include="Infrastructure\UoWNinjectModule.cs" />
-    <Compile Include="Interfaces\Account\IAccountUnitOfWork.cs" />
-    <Compile Include="Interfaces\Account\IProfileManager.cs" />
-    <Compile Include="Interfaces\Shop\ICategoryRepository.cs" />
-    <Compile Include="Interfaces\Shop\IItemCharacteristicRepository.cs" />
-    <Compile Include="Interfaces\Shop\IItemRepository.cs" />
-    <Compile Include="Interfaces\Shop\IOrderRepository.cs" />
-    <Compile Include="Interfaces\Shop\IShopGenericRepository.cs" />
-    <Compile Include="Interfaces\Shop\IShopUnitOfWork.cs" />
+    <Compile Include="DTO\CategoryDTO.cs" />
+    <Compile Include="DTO\ItemCharacteristicsDTO.cs" />
+    <Compile Include="DTO\ItemDTO.cs" />
+    <Compile Include="DTO\OrderDTO.cs" />
+    <Compile Include="Entity\Account\UserDTO.cs" />
+    <Compile Include="Entity\Shop\ShoppingCart.cs" />
+    <Compile Include="Entity\Shop\ShoppingCartLine.cs" />
+    <Compile Include="Entity\Shop\Statistic.cs" />
+    <Compile Include="Infrastructure\BLLMappingConfig.cs" />
+    <Compile Include="Infrastructure\BBLNinjectModule.cs" />
+    <Compile Include="Infrastructure\Account\OperationDetailsBLL.cs" />
+    <Compile Include="Interfaces\IAccountService.cs" />
+    <Compile Include="Interfaces\IAccountServiceCreator.cs" />
+    <Compile Include="Interfaces\IAdminService.cs" />
+    <Compile Include="Interfaces\IStatisticService.cs" />
+    <Compile Include="Interfaces\OrderInterfaces\IManageService.cs" />
+    <Compile Include="Interfaces\IOutputService.cs" />
+    <Compile Include="Interfaces\OrderInterfaces\IShoppingCart.cs" />
+    <Compile Include="Interfaces\OrderInterfaces\IUserService.cs" />
+    <Compile Include="Models\Enums\BLLSortCriteria.cs" />
+    <Compile Include="Models\FilterCriteries.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Realization\Repositories\Account\ProfileManager.cs" />
-    <Compile Include="Realization\Repositories\Shop\CategoryRepository.cs" />
-    <Compile Include="Realization\Repositories\Shop\ItemCharacteristicRepository.cs" />
-    <Compile Include="Realization\Repositories\Shop\ItemRepository.cs" />
-    <Compile Include="Realization\Repositories\Shop\OrderRepository.cs" />
-    <Compile Include="Realization\Repositories\Shop\ShopGenericRepository.cs" />
-    <Compile Include="Realization\UnitOfWork\AccountUnitOfWork.cs" />
-    <Compile Include="Realization\UnitOfWork\ShopUnitOfWork.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{d4f44fd8-43f1-4a67-b054-4a8edda88c50}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
+    <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\AccountServiceCreator.cs" />
+    <Compile Include="Services\AdminService.cs" />
+    <Compile Include="Services\OrderServices\ManageService.cs" />
+    <Compile Include="Services\OutputService.cs" />
+    <Compile Include="Services\OrderServices\UserService.cs" />
+    <Compile Include="Services\StatisticService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\InternetShop.Domain.csproj">
+      <Project>{d4f44fd8-43f1-4a67-b054-4a8edda88c50}</Project>
+      <Name>InternetShop.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UoWandRepositories\InternetShop.UoWandRepositories.csproj">
+      <Project>{e1611cb0-0771-4247-bb24-1b64dc14ffff}</Project>
+      <Name>InternetShop.UoWandRepositories</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

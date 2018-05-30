@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{D4F44FD8-43F1-4A67-B054-4A8EDDA88C50}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.Domain", "Domain\InternetShop.Domain.csproj", "{D4F44FD8-43F1-4A67-B054-4A8EDDA88C50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UoWandRepositories", "UoWandRepositories\UoWandRepositories.csproj", "{E1611CB0-0771-4247-BB24-1B64DC14FFFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.UoWandRepositories", "UoWandRepositories\InternetShop.UoWandRepositories.csproj", "{E1611CB0-0771-4247-BB24-1B64DC14FFFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{934AE2AF-2DFF-4950-9E94-B1841FD5589F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.Tests", "Tests\InternetShop.Tests.csproj", "{934AE2AF-2DFF-4950-9E94-B1841FD5589F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{32DD7C4F-3B34-46CA-8C60-4DD0A902422B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.BLL", "BLL\InternetShop.BLL.csproj", "{32DD7C4F-3B34-46CA-8C60-4DD0A902422B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "WebUI\WebUI.csproj", "{146CCFDA-68C2-47D8-9DD1-733DF125C143}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.WebAPI", "WebUI\InternetShop.WebAPI.csproj", "{146CCFDA-68C2-47D8-9DD1-733DF125C143}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
