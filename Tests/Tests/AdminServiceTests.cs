@@ -39,6 +39,7 @@ namespace Tests
 
             var expected = GetCategory();
 
+            //Assert
             Assert.AreEqual(expected.CategoryId, act.CategoryId);
             Assert.AreEqual(expected.CategoryName, act.CategoryName);
         }

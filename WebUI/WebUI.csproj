@@ -219,21 +219,21 @@
     <Compile Include="Infrastructure\AutoMapperNinjectModule.cs" />
     <Compile Include="Infrastructure\WebApiMappingConfig.cs" />
     <Compile Include="Infrastructure\WebApiNinjectModule.cs" />
-    <Compile Include="Models\Shop\CategoryView.cs" />
-    <Compile Include="Models\Shop\IShoppingCartView.cs" />
-    <Compile Include="Models\Shop\ItemCharacteristicView.cs" />
-    <Compile Include="Models\Shop\ItemsListViewModel.cs" />
-    <Compile Include="Models\Shop\ItemView.cs" />
+    <Compile Include="Models\Entities\CategoryView.cs" />
+    <Compile Include="Models\Shop\UserService\IShoppingCartView.cs" />
+    <Compile Include="Models\Entities\ItemCharacteristicView.cs" />
+    <Compile Include="Models\Shop\UserService\ItemsListViewModel.cs" />
+    <Compile Include="Models\Entities\ItemView.cs" />
     <Compile Include="Models\Account\LoginModel.cs" />
-    <Compile Include="Models\Shop\OrderView.cs" />
+    <Compile Include="Models\Entities\OrderView.cs" />
     <Compile Include="Models\Account\RegistrationModel.cs" />
-    <Compile Include="Models\Shop\ShoppingCartLineView.cs" />
-    <Compile Include="Models\Shop\ShoppingCartView.cs" />
-    <Compile Include="Models\Shop\StatisticView.cs" />
-    <Compile Include="Models\Shop\PaginationParams.cs" />
-    <Compile Include="Models\Shop\PagingInfo.cs" />
-    <Compile Include="Models\Shop\SortCriteriaView.cs" />
-    <Compile Include="Models\Shop\WebApiFilterCriteries.cs" />
+    <Compile Include="Models\Shop\UserService\ShoppingCartLineView.cs" />
+    <Compile Include="Models\Shop\UserService\ShoppingCartView.cs" />
+    <Compile Include="Models\Shop\StatisticService\StatisticView.cs" />
+    <Compile Include="Models\Shop\OutputService\PaginationParams.cs" />
+    <Compile Include="Models\Shop\OutputService\PagingInfo.cs" />
+    <Compile Include="Models\Shop\OutputService\SortCriteriaView.cs" />
+    <Compile Include="Models\Shop\OutputService\WebApiFilterCriteries.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
