@@ -5,4 +5,5 @@ In this project implement Three Layer architecture (with isolation Unit of Work 
 on each level of architecture created own entities (For mapping this entities used AutoMapper)
 and Ninject for implementation Dependency Inversion. 
 Used design patterns such as: DRY, KISS, YUGNI, Unit of Work and Repositories.
-Also there realized the minimal functionality of user authentication and authorization using ASP.NET Identity on cookies based.
+<p>Also there realized the minimal functionality of user authentication and authorization using ASP.NET Identity on cookies based.</p>
+
