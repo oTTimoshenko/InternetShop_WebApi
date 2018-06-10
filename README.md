@@ -1,5 +1,5 @@
 # InternetShop_WebApi
-Used technologies: ASP.NET WebAPI 2.0, Entity Framework 6, LINQ, Ninject, AutoMapper, NUnit, Moq. 
+Used technologies: ASP.NET WebAPI 2.0,  Entity Framework 6, LINQ, Ninject, AutoMapper, NUnit, Moq. 
 This project it is API for online shop which implement main functionality of the online store.
 In this project implement Three Layer architecture (with isolation Unit of Work and Repositories in separate project), 
 on each level of architecture created own entities (For mapping this entities used AutoMapper)
