@@ -6,4 +6,5 @@
   and <b>Ninject</b> for implementation <b>Dependency Inversion</b>. </p>
 <p><b>Used design patterns such as:</b> DRY, KISS, YUGNI, Unit of Work and Repositories.</p>
 <p>Also there realized the minimal functionality of user authentication and authorization using <b>ASP.NET Identity on cookies based</b>.</p>
+<b>For comfortable documentation of API writte [here_is_your_hostname]/swagger as URL</b>
 
