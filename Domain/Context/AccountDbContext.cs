@@ -16,4 +16,5 @@ namespace Domain.Context
 
         public DbSet<UserProfile> UserProfiles { get; set; }
     }
+
 }
