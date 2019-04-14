@@ -14,6 +14,7 @@ namespace WebUI.Models
         [Required]
         [StringLength(30, MinimumLength = 5, ErrorMessage = "Недопустимая длина названия товара")]
         public string ItemName { get; set; }
+
         public string ItemPhotoPath { get; set; }
 
         [Required]
