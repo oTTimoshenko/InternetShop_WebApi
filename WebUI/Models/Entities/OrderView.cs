@@ -14,6 +14,8 @@ namespace WebUI.Models
         [Required]
         public DateTime Time { get; set; }
 
+        public double TimeInMilliseconds => Time.Subtract(new DateTime(1970, 1, 1)).Milliseconds;
+
         [Required]
         public double Price { get; set; }
 

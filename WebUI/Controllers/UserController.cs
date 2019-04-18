@@ -1,27 +1,23 @@
 ﻿using AutoMapper;
 using BLL.DTO;
-using BLL.Entity;
 using BLL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using WebUI.Models;
 
 namespace WebUI.Controllers
 {
-    [Authorize]
+
     public class UserController : ApiController
     {
         IUserService _user;
         IMapper _mapper;
         IShoppingCart icart;
         ShoppingCartView _cartView;
+        IOutputService outputService;
 
-        public UserController(IUserService user, IMapper mapper, IShoppingCart _icart)
+        public UserController(IOutputService _outputService, IUserService user, IMapper mapper, IShoppingCart _icart)
         {
+            outputService = _outputService;
             _user = user;
             _mapper = mapper;
             icart = _icart;
@@ -29,37 +25,37 @@ namespace WebUI.Controllers
         }
         public UserController() { }
 
-        [HttpPost]
-        [Route("api/CartPanel/addItem")]
-        public IHttpActionResult AddItem([FromBody]ItemView item, int quantity)
+        [HttpGet]
+        [Route("api/CartPanel/addItem/{id}")]
+        public IHttpActionResult AddItem(int id)
         {
-            if (ModelState.IsValid)
+            var item = outputService.GetItem(id);
+            if (item != null)
             {
-                var _item = _mapper.Map<ItemDTO>(item);
-                bool result = _user.AddItem(_item, quantity, icart);
+                bool result = _user.AddItem(item, 1, icart);
 
                 if (result)
                     return Ok();
             }
-            else
+
+            return BadRequest();
+        }
+
+        [HttpGet]
+        [Route("api/CartPanel/removeItem/{id}")]
+        public IHttpActionResult RemoveItem(int id)
+        {
+            var item = outputService.GetItem(id);
+            if (item != null)
             {
-                return BadRequest(ModelState);
+                bool result = _user.RemoveItem(item, icart);
+                if (result)
+                    return Ok();
             }
             return BadRequest();
         }
 
-        [HttpDelete]
-        [Route("api/CartPanel/removeItem")]
-        public IHttpActionResult RemoveItem([FromBody]ItemView item)
-        {
-            var _item = _mapper.Map<ItemDTO>(item);
-            bool result = _user.RemoveItem(_item, icart);
-            if (result)
-                return Ok();
-            return BadRequest();
-        }
-
-        [HttpPut]
+        [HttpGet]
         [Route("api/CartPanel/composeOrder")]
         public IHttpActionResult ComposeCart()
         {
@@ -70,11 +66,11 @@ namespace WebUI.Controllers
             return Ok(cart);
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/OrderPanel/addOrder")]
         public IHttpActionResult MakeOrder()
         {
-            var _order =_user.MakeOrder(icart);
+            var _order = _user.MakeOrder(icart);
             if (_order == null)
                 return NotFound();
 

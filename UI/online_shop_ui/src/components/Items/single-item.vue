@@ -4,7 +4,7 @@
       <v-img :aspect-ratio="16/9" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
       <v-card-title>
         <div>
-          <span class="headline">Test Item Name</span>
+          <span style="font-size: 16px; font-weight: bold;">{{itemDetails.ItemName}}</span>
           <div class="d-flex">
             <v-rating :value="value" color="amber" dense half-increments readonly size="14"></v-rating>
             <div class="ml-2 grey--text text--darken-2">
@@ -23,12 +23,23 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component({
   components: {}
 })
 export default class SingleItem extends Vue {
+  @Prop({
+    default: {
+      itemId: 0,
+      itemName: "",
+      itemPhotoPath: "",
+      description: "",
+      price: 0
+    }
+  })
+  private itemDetails: any;
+
   private value: number = 3.4;
   private reviews: number = 435;
 

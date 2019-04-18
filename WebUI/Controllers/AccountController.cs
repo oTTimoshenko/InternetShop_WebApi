@@ -33,8 +33,9 @@ namespace WebUI.Controllers
 
         [HttpGet]
         [Route("api/Account/Login")]
-        public IHttpActionResult Login([FromUri]LoginModel model)
+        public IHttpActionResult Login(string email, string password)
         {
+            LoginModel model = new LoginModel() { Email = email, Password = password };
             SetInitialData();
             if (ModelState.IsValid)
             {
@@ -52,7 +53,7 @@ namespace WebUI.Controllers
                         IsPersistent = true
                     }, claim);
                 }
-                return Ok("Log in success.");
+                return Ok(true);
             }
             return BadRequest();
         }
@@ -68,8 +69,17 @@ namespace WebUI.Controllers
 
         [HttpGet]
         [Route("api/Account/Register")]
-        public IHttpActionResult Register([FromUri]RegistrationModel model)
+        public IHttpActionResult Register(string name, string address, string password, string confirmPassword, string email)
         {
+            RegistrationModel model = new RegistrationModel()
+            {
+                Password = password,
+                Email = email,
+                Address = address,
+                ConfirmPassword = confirmPassword,
+                Name = name
+            };
+
             SetInitialData();
             OperationDetailsBLL operationDetails;
             if (ModelState.IsValid)

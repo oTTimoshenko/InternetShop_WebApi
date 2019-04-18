@@ -100,7 +100,7 @@ namespace BLL.Services
             {
                 Items = items,
                 Time = System.DateTime.Now,
-                Price = cart.overallPrice,
+                Price = items.Sum(x=>x.Price),
                 State = StateDTO.In_process
                 
             };

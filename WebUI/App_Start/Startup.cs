@@ -22,6 +22,7 @@ namespace WebUI.App_Start
        
         public void Configuration(IAppBuilder app)
         {
+            
             app.CreatePerOwinContext<IAccountService>(CreateAccountService);
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {

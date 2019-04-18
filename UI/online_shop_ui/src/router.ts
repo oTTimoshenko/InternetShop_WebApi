@@ -1,13 +1,12 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import Home from './views/Home.vue'
 import SingleItemWindow from './components/Items/SingleItemWindow.vue';
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
+export default new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
@@ -36,6 +35,6 @@ export default new Router({
       path: '/cart',
       name: 'cart',
       component: () => import('./components/Cart/Cart.vue')
-    },
+    }
   ]
 })

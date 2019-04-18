@@ -1,7 +1,17 @@
 <template>
   <v-container>
-    <LoginWindow/>
-    <!-- <RegistrationWindow/> -->
+    <div class="loginPage">
+      <LoginWindow
+        v-on:onShowRegistrationComponent="onShowRegistrationComponent"
+        v-on:userLoggedIn="onUserLoggedIn"
+        v-if="isUserAlreadyRegistered"
+      />
+      <RegistrationWindow
+        v-on:userLoggedIn="onUserLoggedIn"
+        v-on:onShowLoginComponent="onShowLoginComponent"
+        v-else
+      />
+    </div>
   </v-container>
 </template>
 
@@ -16,5 +26,26 @@ import RegistrationWindow from "./registration-window.vue";
     RegistrationWindow
   }
 })
-export default class LoginPage extends Vue {}
+export default class LoginPage extends Vue {
+  private isUserAlreadyRegistered: boolean = true;
+
+  private onShowLoginComponent() {
+    this.isUserAlreadyRegistered = true;
+  }
+
+  private onShowRegistrationComponent() {
+    this.isUserAlreadyRegistered = false;
+  }
+
+  private onUserLoggedIn() {
+    this.$emit("userLoggedIn");
+  }
+}
 </script>
+
+<style>
+.loginPage {
+  height: 500px !important;
+}
+</style>
+
